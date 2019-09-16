@@ -10,7 +10,7 @@
     <meta name="description" content="计算机视觉，深度学习，博客">
     
     <title>
-      Archives2019 - 学习深度学习
+      tensorflow入门笔记:指定GPU及分配显存 - 学习深度学习
     </title>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -48,7 +48,7 @@
             Home
           </a>
             
-          <a href="javascript:void(0)" class="current">
+          <a href="/archives" class>
             Archives
           </a>
             
@@ -92,55 +92,142 @@
 
     <div id="container">
       <div class="main">
-        <div class="archives">
-    
-    
+        <article class="post-entry">
+    <div class="header">
+      <div class="title">tensorflow入门笔记:指定GPU及分配显存</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2019/09/16</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/" data-flag-title="tensorflow入门笔记:指定GPU及分配显存">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
 
-
-
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2019" class="archive-meta">
-            2019
-        </a>
+        
+        
+        
+      </div>
+      <div>
+      </div>
     </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/">
-                        tensorflow入门笔记:指定GPU及分配显存
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/09/16</span>
-                    </span>
-                    
+    <h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><h4 id="1-安装好tensorflow的gpu版本及其对应CUDA"><a href="#1-安装好tensorflow的gpu版本及其对应CUDA" class="headerlink" title="1.安装好tensorflow的gpu版本及其对应CUDA"></a>1.安装好tensorflow的gpu版本及其对应CUDA</h4><h4 id="2-有GPU"><a href="#2-有GPU" class="headerlink" title="2.有GPU"></a>2.有GPU</h4><h2 id="1-指定某一块或多块gpu运行"><a href="#1-指定某一块或多块gpu运行" class="headerlink" title="1.指定某一块或多块gpu运行"></a>1.指定某一块或多块gpu运行</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定第二块gpu</span></span><br><span class="line">CUDA_VISIBLE_DEVICES=1 python &#123;xxx&#125;.py</span><br></pre></td></tr></table></figure>
 
-                    
-                </div>
-            </div>
-        </article>
-        
-        
-    </div>
-</section>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CUDA_VISIBLE_DEVICES=1</span><br><span class="line">python &#123;xxx&#125;.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">"CUDA_VISIBLE_DEVICES"</span>] = <span class="string">"2"</span></span><br></pre></td></tr></table></figure>
+
+<p>参数参考：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Environment Variable Syntax</th>
+<th align="left">Results</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CUDA_VISIBLE_DEVICES=1</td>
+<td align="left">Only device 1 will be seen</td>
+</tr>
+<tr>
+<td align="left">CUDA_VISIBLE_DEVICES=0,1</td>
+<td align="left">Devices 0 and 1 will be visible</td>
+</tr>
+<tr>
+<td align="left">CUDA_VISIBLE_DEVICES=”0,1”</td>
+<td align="left">Same as above, quotation marks are optional</td>
+</tr>
+<tr>
+<td align="left">CUDA_VISIBLE_DEVICES=0,2,3</td>
+<td align="left">Devices 0, 2, 3 will be visible; device 1 is masked</td>
+</tr>
+<tr>
+<td align="left">CUDA_VISIBLE_DEVICES=””</td>
+<td align="left">No GPU will be visible</td>
+</tr>
+</tbody></table>
+<h2 id="2-配置gpu显存使用率"><a href="#2-配置gpu显存使用率" class="headerlink" title="2.配置gpu显存使用率"></a>2.配置gpu显存使用率</h2><h3 id="方法一：通过配置Session的运行参数配置gpu的使用"><a href="#方法一：通过配置Session的运行参数配置gpu的使用" class="headerlink" title="方法一：通过配置Session的运行参数配置gpu的使用"></a>方法一：通过配置Session的运行参数配置gpu的使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过配置Session的运行参数配置gpu的使用</span></span><br><span class="line"></span><br><span class="line">config = tf.ConfigProto(allow_soft_placement=<span class="literal">True</span>, allow_soft_placement=<span class="literal">True</span>)</span><br><span class="line">config.gpu_options.per_process_gpu_memory_fraction = <span class="number">0.4</span>  <span class="comment">#占用40%显存</span></span><br><span class="line">sess = tf.Session(config=config）</span><br></pre></td></tr></table></figure>
+
+<p>参数参考：</p>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th align="left">Results</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tf.ConfigProto(log_device_placement=True)</td>
+<td align="left">记录设备指派情况</td>
+</tr>
+<tr>
+<td>tf.ConfigProto(allow_soft_placement=True）</td>
+<td align="left">自动选择一个运行备</td>
+</tr>
+<tr>
+<td>config.gpu_options.allow_growth = True</td>
+<td align="left">动态申请显存</td>
+</tr>
+<tr>
+<td>config.gpu_options.per_process_gpu_memory_fraction = 0.4</td>
+<td align="left">限制GPU使用率</td>
+</tr>
+</tbody></table>
+
 
   
 
-  <div class="paginator">
-        <span class="page-number current">1</span>
+  
+    <div class="post-reward">
+      <div id="reward-button">请杯咖啡呗~</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+    </div>
   </div>
-</div>
 
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="http://rashawnzhang.github.io">张宇轩</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="http://rashawnzhang.github.io/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/">http://rashawnzhang.github.io/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="http://rashawnzhang.github.io">张宇轩</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+</article>
         <footer>
           <div class="copyright">
             ©2019 <a href="http://rashawnzhang.github.io">张宇轩</a>
@@ -197,7 +284,16 @@
             
           </div>
         </div>
-        
+         
+        <div class="toc-widget">
+          <div class="title">
+            <span>Toc</span>
+          </div>
+          <div class="post-toc">
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前提"><span class="toc-text">前提</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-安装好tensorflow的gpu版本及其对应CUDA"><span class="toc-text">1.安装好tensorflow的gpu版本及其对应CUDA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-有GPU"><span class="toc-text">2.有GPU</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#1-指定某一块或多块gpu运行"><span class="toc-text">1.指定某一块或多块gpu运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法一"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法二"><span class="toc-text">方法二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法三"><span class="toc-text">方法三</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-配置gpu显存使用率"><span class="toc-text">2.配置gpu显存使用率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法一：通过配置Session的运行参数配置gpu的使用"><span class="toc-text">方法一：通过配置Session的运行参数配置gpu的使用</span></a>
+          </li></ol></li></div>
+        </div>
+         
       </div>
     </div>
     <!-- swiftype -->
