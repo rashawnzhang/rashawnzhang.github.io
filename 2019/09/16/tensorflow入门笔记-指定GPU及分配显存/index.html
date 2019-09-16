@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="前提1.安装好tensorflow的gpu版本及其对应CUDA2.有GPU1.指定某一块或多块gpu运行方法一12# 指定第二块gpuCUDA_VISIBLE_DEVICES=1 python &amp;#123;xxx&amp;#125;.py  方法二12export CUDA_VISIBLE_DEVICES=1python &amp;#123;xxx&amp;#125;.py  方法三12import osos.envir">
+  <meta name="description" content="前提1.安装好tensorflow的gpu版本及其对应CUDA2.有GPU">
 <meta name="keywords" content="深度学习,博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tensorflow入门笔记:指定GPU及分配显存">
 <meta property="og:url" content="http://rashawnzhang.github.io/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/index.html">
 <meta property="og:site_name" content="学习深度学习">
-<meta property="og:description" content="前提1.安装好tensorflow的gpu版本及其对应CUDA2.有GPU1.指定某一块或多块gpu运行方法一12# 指定第二块gpuCUDA_VISIBLE_DEVICES=1 python &amp;#123;xxx&amp;#125;.py  方法二12export CUDA_VISIBLE_DEVICES=1python &amp;#123;xxx&amp;#125;.py  方法三12import osos.envir">
+<meta property="og:description" content="前提1.安装好tensorflow的gpu版本及其对应CUDA2.有GPU">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-16T13:00:17.367Z">
+<meta property="og:updated_time" content="2019-09-16T14:56:09.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow入门笔记:指定GPU及分配显存">
-<meta name="twitter:description" content="前提1.安装好tensorflow的gpu版本及其对应CUDA2.有GPU1.指定某一块或多块gpu运行方法一12# 指定第二块gpuCUDA_VISIBLE_DEVICES=1 python &amp;#123;xxx&amp;#125;.py  方法二12export CUDA_VISIBLE_DEVICES=1python &amp;#123;xxx&amp;#125;.py  方法三12import osos.envir">
+<meta name="twitter:description" content="前提1.安装好tensorflow的gpu版本及其对应CUDA2.有GPU">
   <link rel="canonical" href="http://rashawnzhang.github.io/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/">
 
 
@@ -224,7 +224,7 @@
                 
               
 
-              <time title="创建时间：2019-09-16 20:35:05 / 修改时间：21:00:17" itemprop="dateCreated datePublished" datetime="2019-09-16T20:35:05+08:00">2019-09-16</time>
+              <time title="创建时间：2019-09-16 20:35:05 / 修改时间：22:56:09" itemprop="dateCreated datePublished" datetime="2019-09-16T20:35:05+08:00">2019-09-16</time>
             </span>
           
             
@@ -243,7 +243,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><h4 id="1-安装好tensorflow的gpu版本及其对应CUDA"><a href="#1-安装好tensorflow的gpu版本及其对应CUDA" class="headerlink" title="1.安装好tensorflow的gpu版本及其对应CUDA"></a>1.安装好tensorflow的gpu版本及其对应CUDA</h4><h4 id="2-有GPU"><a href="#2-有GPU" class="headerlink" title="2.有GPU"></a>2.有GPU</h4><h2 id="1-指定某一块或多块gpu运行"><a href="#1-指定某一块或多块gpu运行" class="headerlink" title="1.指定某一块或多块gpu运行"></a>1.指定某一块或多块gpu运行</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定第二块gpu</span></span><br><span class="line">CUDA_VISIBLE_DEVICES=1 python &#123;xxx&#125;.py</span><br></pre></td></tr></table></figure>
+        <h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><h4 id="1-安装好tensorflow的gpu版本及其对应CUDA"><a href="#1-安装好tensorflow的gpu版本及其对应CUDA" class="headerlink" title="1.安装好tensorflow的gpu版本及其对应CUDA"></a>1.安装好tensorflow的gpu版本及其对应CUDA</h4><h4 id="2-有GPU"><a href="#2-有GPU" class="headerlink" title="2.有GPU"></a>2.有GPU</h4><a id="more"></a>
+<h2 id="1-指定某一块或多块gpu运行"><a href="#1-指定某一块或多块gpu运行" class="headerlink" title="1.指定某一块或多块gpu运行"></a>1.指定某一块或多块gpu运行</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定第二块gpu</span></span><br><span class="line">CUDA_VISIBLE_DEVICES=1 python &#123;xxx&#125;.py</span><br></pre></td></tr></table></figure>
 
 <h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CUDA_VISIBLE_DEVICES=1</span><br><span class="line">python &#123;xxx&#125;.py</span><br></pre></td></tr></table></figure>
 
@@ -318,6 +319,22 @@
 
         
 
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/09/16/ubuntu常用命令/" rel="prev" title="ubuntu常用命令">
+                  ubuntu常用命令 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
       </footer>
     
   </div>
@@ -377,12 +394,25 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
     
   </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://rashawnzhang.github.io" title="GitHub &rarr; https://rashawnzhang.github.io"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+  </div>
 
 
 
@@ -432,10 +462,61 @@
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
 <script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
 <script src="/js/schemes/pisces.js?v=7.4.0"></script>
 
 <script src="/js/next-boot.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
@@ -460,6 +541,7 @@
 
 
 
+    <div id="pjax">
 
   
 
@@ -467,5 +549,6 @@
 
   
 
+    </div>
 </body>
 </html>
