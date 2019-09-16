@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="学习深度学习">
 <meta property="og:description" content="备份、更换、更新软件源备份软件源 1sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-16T15:01:53.102Z">
+<meta property="og:updated_time" content="2019-09-16T15:24:48.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu常用命令">
 <meta name="twitter:description" content="备份、更换、更新软件源备份软件源 1sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup">
@@ -162,6 +162,17 @@
       
       
         
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
         <li class="menu-item menu-item-archives">
       
     
@@ -224,12 +235,25 @@
                 
               
 
-              <time title="创建时间：2019-09-16 22:57:53 / 修改时间：23:01:53" itemprop="dateCreated datePublished" datetime="2019-09-16T22:57:53+08:00">2019-09-16</time>
+              <time title="创建时间：2019-09-16 22:57:53 / 修改时间：23:24:48" itemprop="dateCreated datePublished" datetime="2019-09-16T22:57:53+08:00">2019-09-16</time>
             </span>
           
             
 
             
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -251,7 +275,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
 
 <p>国内主要软件源</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Ubuntu 官方源 </span></span><br><span class="line">deb http://archive.ubuntu.com/ubuntu/ gutsy main restricted universe multiverse</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu/ gutsy-security main restricted universe multiverse</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu/ gutsy-updates main restricted universe multiverse</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu/ gutsy-proposed main restricted universe multiverse</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu/ gutsy-backports main restricted universe multiverse</span><br><span class="line">deb-src http://archive.ubuntu.com/ubuntu/ gutsy main restricted universe multiverse</span><br><span class="line">deb-src http://archive.ubuntu.com/ubuntu/ gutsy-security main restricted universe multiverse</span><br><span class="line">deb-src http://archive.ubuntu.com/ubuntu/ gutsy-updates main restricted universe multiverse</span><br><span class="line">deb-src http://archive.ubuntu.com/ubuntu/ gutsy-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://archive.ubuntu.com/ubuntu/ gutsy-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Ubuntu 官方源  </span></span><br><span class="line">deb http://archive.ubuntu.com/ubuntu/ gutsy main restricted universe multiverse</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu/ gutsy-security main restricted universe multiverse</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu/ gutsy-updates main restricted universe multiverse</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu/ gutsy-proposed main restricted universe multiverse</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu/ gutsy-backports main restricted universe multiverse</span><br><span class="line">deb-src http://archive.ubuntu.com/ubuntu/ gutsy main restricted universe multiverse</span><br><span class="line">deb-src http://archive.ubuntu.com/ubuntu/ gutsy-security main restricted universe multiverse</span><br><span class="line">deb-src http://archive.ubuntu.com/ubuntu/ gutsy-updates main restricted universe multiverse</span><br><span class="line">deb-src http://archive.ubuntu.com/ubuntu/ gutsy-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://archive.ubuntu.com/ubuntu/ gutsy-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#网易163</span></span><br><span class="line">deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 
@@ -390,6 +414,19 @@
         
           <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
