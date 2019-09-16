@@ -1,308 +1,463 @@
 <!DOCTYPE html>
-<html class="bounceInLeft">
-  <head><meta name="generator" content="Hexo 3.9.0">
-    
-    <meta charset="utf-8">
-    <meta name="baidu-site-verification" content="vvVgSQUzPU">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="深度学习,博客">
-     
-    <meta name="description" content="计算机视觉，深度学习，博客">
-    
-    <title>
-        - 学习深度学习
-    </title>
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/style/style.css">
-  </head>
-  <body>
-    <div id="fixed-menu">
-      <span class="iconfont icon-arrowup"></span>
-    </div>
-    <div id="progress">
-      <div class="line"></div>
-    </div>
-    <!-- <div id="search-wrap">
-      <input type="text" placeholder="Search Keys"/>
 
-      <div class="result"></div>
-    </div> -->
-    <div id="side" class="bounceInLeft">
-      <div class="shrink">
-        <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
-        <span class="iconfont icon-menu toggle-icon"></span>
-        <a href="javascript:void(0)" class="search-box">
-          <span class="iconfont icon-sousuo"></span>
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="计算机视觉，深度学习，博客">
+<meta name="keywords" content="深度学习,博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="学习深度学习">
+<meta property="og:url" content="http://rashawnzhang.github.io/index.html">
+<meta property="og:site_name" content="学习深度学习">
+<meta property="og:description" content="计算机视觉，深度学习，博客">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习深度学习">
+<meta name="twitter:description" content="计算机视觉，深度学习，博客">
+  <link rel="canonical" href="http://rashawnzhang.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>学习深度学习</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学习深度学习</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://rashawnzhang.github.io/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张宇轩">
+      <meta itemprop="description" content="计算机视觉，深度学习，博客">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习深度学习">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/" class="post-title-link" itemprop="url">tensorflow入门笔记:指定GPU及分配显存</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-16 20:35:05 / 修改时间：21:00:17" itemprop="dateCreated datePublished" datetime="2019-09-16T20:35:05+08:00">2019-09-16</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><h4 id="1-安装好tensorflow的gpu版本及其对应CUDA"><a href="#1-安装好tensorflow的gpu版本及其对应CUDA" class="headerlink" title="1.安装好tensorflow的gpu版本及其对应CUDA"></a>1.安装好tensorflow的gpu版本及其对应CUDA</h4><h4 id="2-有GPU"><a href="#2-有GPU" class="headerlink" title="2.有GPU"></a>2.有GPU</h4><h2 id="1-指定某一块或多块gpu运行"><a href="#1-指定某一块或多块gpu运行" class="headerlink" title="1.指定某一块或多块gpu运行"></a>1.指定某一块或多块gpu运行</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定第二块gpu</span></span><br><span class="line">CUDA_VISIBLE_DEVICES=1 python &#123;xxx&#125;.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CUDA_VISIBLE_DEVICES=1</span><br><span class="line">python &#123;xxx&#125;.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">"CUDA_VISIBLE_DEVICES"</span>] = <span class="string">"2"</span></span><br></pre></td></tr></table></figure>
+
+<p>参数参考：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Environment Variable Syntax</th>
+<th align="left">Results</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CUDA_VISIBLE_DEVICES=1</td>
+<td align="left">Only device 1 will be seen</td>
+</tr>
+<tr>
+<td align="left">CUDA_VISIBLE_DEVICES=0,1</td>
+<td align="left">Devices 0 and 1 will be visible</td>
+</tr>
+<tr>
+<td align="left">CUDA_VISIBLE_DEVICES=”0,1”</td>
+<td align="left">Same as above, quotation marks are optional</td>
+</tr>
+<tr>
+<td align="left">CUDA_VISIBLE_DEVICES=0,2,3</td>
+<td align="left">Devices 0, 2, 3 will be visible; device 1 is masked</td>
+</tr>
+<tr>
+<td align="left">CUDA_VISIBLE_DEVICES=””</td>
+<td align="left">No GPU will be visible</td>
+</tr>
+</tbody></table>
+<h2 id="2-配置gpu显存使用率"><a href="#2-配置gpu显存使用率" class="headerlink" title="2.配置gpu显存使用率"></a>2.配置gpu显存使用率</h2><h3 id="方法一：通过配置Session的运行参数配置gpu的使用"><a href="#方法一：通过配置Session的运行参数配置gpu的使用" class="headerlink" title="方法一：通过配置Session的运行参数配置gpu的使用"></a>方法一：通过配置Session的运行参数配置gpu的使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过配置Session的运行参数配置gpu的使用</span></span><br><span class="line"></span><br><span class="line">config = tf.ConfigProto(allow_soft_placement=<span class="literal">True</span>, allow_soft_placement=<span class="literal">True</span>)</span><br><span class="line">config.gpu_options.per_process_gpu_memory_fraction = <span class="number">0.4</span>  <span class="comment">#占用40%显存</span></span><br><span class="line">sess = tf.Session(config=config）</span><br></pre></td></tr></table></figure>
+
+<p>参数参考：</p>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th align="left">Results</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tf.ConfigProto(log_device_placement=True)</td>
+<td align="left">记录设备指派情况</td>
+</tr>
+<tr>
+<td>tf.ConfigProto(allow_soft_placement=True）</td>
+<td align="left">自动选择一个运行备</td>
+</tr>
+<tr>
+<td>config.gpu_options.allow_growth = True</td>
+<td align="left">动态申请显存</td>
+</tr>
+<tr>
+<td>config.gpu_options.per_process_gpu_memory_fraction = 0.4</td>
+<td align="left">限制GPU使用率</td>
+</tr>
+</tbody></table>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">张宇轩</p>
+  <div class="site-description" itemprop="description">计算机视觉，深度学习，博客</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
-      <div class="magnify">
-        <div class="about">
-          <div class="author">张宇轩</div>
-          <a href="/" class="logo" style="background-image: url('/images/logo.jpeg')"></a>
-        </div>
-
-        <div class="nav">
-           
-          <a href="javascript:void(0)" class="current">
-            Home
-          </a>
-            
-          <a href="/archives" class>
-            Archives
-          </a>
-            
-          <a href="/categories" class>
-            Categories
-          </a>
-            
-          <a href="/tag" class>
-            Tags
-          </a>
-            
-          <a href="/about" class>
-            About
-          </a>
-           
-          <a href="javascript:void(0)" class="search-box">
-            <span class="iconfont icon-sousuo"></span>
-          </a>
-        </div>
-        <div class="follow">
-          
-          <a href="https://github.com/shixiaohu2206" target="_block">
-            <span class="iconfont icon-github"></span>
-          </a>
-          
-          <a href="https://www.facebook.com/shi.xiaohu.5" target="_block">
-            <span class="iconfont icon-facebook"></span>
-          </a>
-          
-          <a href="https://www.instagram.com/shi_xiaohu/" target="_block">
-            <span class="iconfont icon-instagram"></span>
-          </a>
-           
-          <a href="/atom.xml" target="_block">
-            <span class="iconfont icon-rss"></span>
-          </a>
-          
-        </div>
-      </div>
-    </div>
-
-    <div id="container">
-      <div class="main">
-        
-<div class="posts">
-  <ul>
-     
-    <li class="item">
-      
-      <div class="describe">
-        <div class="title">
-          <a href="/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/">tensorflow入门笔记:指定GPU及分配显存</a>
-        </div>
-        <div class="date">
-          <span class="iconfont icon-time-circle"></span>
-          <span>19/09/16</span>
-        </div>
-        
-        <div class="meta">
-          <div class="l">
-            <div class="warp">
-              
-              <span class="iconfont icon-folder"></span>
-              <span class="desp">
-                
-              </span>
-              
-            </div>
-
-            
-            <div class="warp">
-              <span class="iconfont icon-tag1"></span>
-              <span class="desp">
-                
-              </span>
-            </div>
-            
-            <div class="warp">
-              <div class="share" data-url="/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/">
-                <span class="iconfont icon-share"></span>
-              </div>
-              <div class="desp share" data-url="/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/">
-                <a href="javascript:void(0);">分享</a>
-              </div>
-            </div>
-          </div>
-          <div class="r">
-            <a href="/2019/09/16/tensorflow入门笔记-指定GPU及分配显存/">Read More</a>
-          </div>
-        </div>
-      </div>
-    </li>
     
-  </ul>
-</div>
+  </nav>
 
-<div class="paginator">
-  <span class="page-number current">1</span>
-</div>
 
-        <footer>
-          <div class="copyright">
-            ©2019 <a href="http://rashawnzhang.github.io">张宇轩</a>
-            <div>
-              Powered by <a href="https://hexo.io">Hexo</a> |
-              <a href="https://github.com/shixiaohu2206/hexo-theme-huhu">hexo-theme-huhu</a>
-            </div>
-          </div>
-          
-        </footer>
+
       </div>
+
     </div>
-    <div id="side-a">
-      <div class="card">
-        <div class="logo-widget">
-          <div class="author">
-            张宇轩
-          </div>
-          <div class="logo" style="background-image: url('/images/logo.jpeg')"></div>
-        </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张宇轩</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
         
-        <div class="follow-widget">
-          
-          <a href="https://github.com/shixiaohu2206" target="_block">
-            <span class="iconfont icon-github"></span>
-          </a>
-          
-          <a href="https://www.facebook.com/shi.xiaohu.5" target="_block">
-            <span class="iconfont icon-facebook"></span>
-          </a>
-          
-          <a href="https://www.instagram.com/shi_xiaohu/" target="_block">
-            <span class="iconfont icon-instagram"></span>
-          </a>
-           
-          <a href="/atom.xml" target="_block">
-            <span class="iconfont icon-rss"></span>
-          </a>
-          
-        </div>
-        <div class="category-widget">
-          <div class="title">
-            <span>category</span>
-          </div>
-          <div class="list">
-            
-          </div>
-        </div>
-        <div class="tag-widget">
-          <div class="title">
-            <span>Tag Cloud</span>
-          </div>
-          <div class="tag-cloud">
-            
-          </div>
-        </div>
+
+
+
+
+
+
+
+
+
+
+
+
         
       </div>
-    </div>
-    <!-- swiftype -->
-    
-    <!-- swiftype -->
-  </body>
+    </footer>
+  </div>
+
   
-  <p id="theme_str" hidden>{&#34;title&#34;:&#34;学习深度学习&#34;,&#34;subtitle&#34;:null,&#34;description&#34;:&#34;计算机视觉，深度学习，博客&#34;,&#34;author&#34;:&#34;张宇轩&#34;,&#34;language&#34;:&#34;zh-cn&#34;,&#34;timezone&#34;:null,&#34;url&#34;:&#34;http://rashawnzhang.github.io&#34;,&#34;root&#34;:&#34;/&#34;,&#34;permalink&#34;:&#34;:year/:month/:day/:title/&#34;,&#34;permalink_defaults&#34;:null,&#34;source_dir&#34;:&#34;source&#34;,&#34;public_dir&#34;:&#34;public&#34;,&#34;tag_dir&#34;:&#34;tags&#34;,&#34;archive_dir&#34;:&#34;archives&#34;,&#34;category_dir&#34;:&#34;categories&#34;,&#34;code_dir&#34;:&#34;downloads/code&#34;,&#34;i18n_dir&#34;:&#34;:lang&#34;,&#34;skip_render&#34;:null,&#34;new_post_name&#34;:&#34;:title.md&#34;,&#34;default_layout&#34;:&#34;post&#34;,&#34;titlecase&#34;:false,&#34;external_link&#34;:true,&#34;filename_case&#34;:0,&#34;render_drafts&#34;:false,&#34;post_asset_folder&#34;:false,&#34;relative_link&#34;:false,&#34;future&#34;:true,&#34;highlight&#34;:{&#34;enable&#34;:true,&#34;auto_detect&#34;:false,&#34;line_number&#34;:true,&#34;tab_replace&#34;:null},&#34;default_category&#34;:&#34;uncategorized&#34;,&#34;category_map&#34;:null,&#34;tag_map&#34;:null,&#34;date_format&#34;:&#34;YYYY-MM-DD&#34;,&#34;time_format&#34;:&#34;HH:mm:ss&#34;,&#34;per_page&#34;:10,&#34;pagination_dir&#34;:&#34;page&#34;,&#34;theme&#34;:&#34;huhu&#34;,&#34;deploy&#34;:{&#34;type&#34;:&#34;git&#34;,&#34;repo&#34;:&#34;git@github.com:rashawnzhang/rashawnzhang.github.io.git&#34;,&#34;branch&#34;:&#34;master&#34;},&#34;ignore&#34;:[],&#34;keywords&#34;:&#34;深度学习,博客&#34;,&#34;index_generator&#34;:{&#34;per_page&#34;:10,&#34;order_by&#34;:&#34;-date&#34;,&#34;path&#34;:&#34;&#34;},&#34;archive_generator&#34;:{&#34;per_page&#34;:10,&#34;yearly&#34;:true,&#34;monthly&#34;:true,&#34;daily&#34;:false},&#34;category_generator&#34;:{&#34;per_page&#34;:10},&#34;tag_generator&#34;:{&#34;per_page&#34;:10},&#34;marked&#34;:{&#34;gfm&#34;:true,&#34;pedantic&#34;:false,&#34;sanitize&#34;:false,&#34;tables&#34;:true,&#34;breaks&#34;:true,&#34;smartLists&#34;:true,&#34;smartypants&#34;:true,&#34;modifyAnchors&#34;:&#34;&#34;,&#34;autolink&#34;:true},&#34;server&#34;:{&#34;port&#34;:4000,&#34;log&#34;:false,&#34;compress&#34;:false,&#34;header&#34;:true},&#34;menu&#34;:{&#34;home&#34;:&#34;/&#34;,&#34;archives&#34;:&#34;/archives&#34;,&#34;categories&#34;:&#34;/categories&#34;,&#34;tags&#34;:&#34;/tag&#34;,&#34;about&#34;:&#34;/about&#34;},&#34;logo&#34;:&#34;/images/logo.png&#34;,&#34;categories_max&#34;:5,&#34;tags_max&#34;:10,&#34;favicon&#34;:&#34;/images/favicon.ico&#34;,&#34;site_search&#34;:true,&#34;rss&#34;:&#34;/atom.xml&#34;,&#34;follow&#34;:{&#34;github&#34;:&#34;https://github.com/shixiaohu2206&#34;,&#34;facebook&#34;:&#34;https://www.facebook.com/shi.xiaohu.5&#34;,&#34;instagram&#34;:&#34;https://www.instagram.com/shi_xiaohu/&#34;},&#34;search_url&#34;:&#34;/search.xml&#34;,&#34;site_icp&#34;:&#34;&#34;,&#34;site_friends&#34;:{&#34;房间里的小猫咪&#34;:&#34;http://baidu.com&#34;},&#34;share&#34;:[&#34;weibo&#34;,&#34;weixin&#34;,&#34;qqkongjian&#34;,&#34;QQ&#34;,&#34;douban&#34;,&#34;facebook&#34;,&#34;twitter&#34;,&#34;google&#34;],&#34;cdn_module&#34;:{&#34;av_min&#34;:&#34;https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min&#34;,&#34;pjax&#34;:&#34;https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min&#34;,&#34;jquery&#34;:&#34;https://cdn.bootcss.com/jquery/3.4.1/jquery.min&#34;,&#34;confirm&#34;:&#34;https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min&#34;,&#34;fancybox&#34;:&#34;https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min&#34;,&#34;algoliasearch&#34;:&#34;https://cdn.jsdelivr.net/npm/algoliasearch@3.33.0/dist/algoliasearchLite.min&#34;},&#34;baidu_push&#34;:true,&#34;reward&#34;:{&#34;weixin&#34;:&#34;images/weixin.png&#34;,&#34;zhifubao&#34;:&#34;images/zhifubao.png&#34;},&#34;service_worker&#34;:{&#34;open&#34;:false}}</p>
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
 </html>
-<script type="text/javascript">
-  window.addEventListener('load', function() {
-    ;(adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: '',
-      enable_page_level_ads: true
-    })
-
-    window.THEME_CONFIG = JSON.parse(document.getElementById('theme_str').innerText)
-    window.loadJs = function(d, m, a) {
-      var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
-      var b = document.createElement('script')
-      b.defer = true
-      b.setAttribute('type', 'text/javascript')
-      b.setAttribute('charset', 'UTF-8')
-      b.setAttribute('async', 'true')
-      b.setAttribute('src', d)
-      m && b.setAttribute('data-main', '/scripts/app')
-      if (typeof a === 'function') {
-        if (window.attachEvent) {
-          b.onreadystatechange = function() {
-            var e = b.readyState
-            if (e === 'loaded' || e === 'complete') {
-              b.onreadystatechange = null
-              a()
-            }
-          }
-        } else {
-          b.onload = a
-        }
-      }
-      c.appendChild(b)
-    }
-    window.loadJs &&
-      window.loadJs('https://cdn.bootcss.com/require.js/2.3.6/require.min.js', true, function() {
-        require.config({
-          paths: {
-            // site
-            util: 'util',
-            share: 'share',
-            search: 'search',
-            iconfont: 'iconfont',
-            registerSW: 'registerSW',
-            valine: ['cdn/Valine.min'],
-
-            // cdn
-            av: ['https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min', 'cdn/av-min'],
-            pjax: ['https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min', 'cdn/pjax.min'],
-            jquery: ['https://cdn.bootcss.com/jquery/3.4.1/jquery.min', 'cdn/jquery.min'],
-            confirm: ['https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min', 'cdn/jquery.confirm.min'],
-            fancybox: ['https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min', 'cdn/jquery.fancybox.min'],
-            algoliasearch: ['https://cdn.jsdelivr.net/npm/algoliasearch@3.33.0/dist/algoliasearchLite.min', 'cdn/algoliasearchLite.min']
-          },
-
-          map: {
-            '*': {
-              css: 'https://cdn.bootcss.com/require-css/0.1.10/css.min.js'
-            }
-          },
-
-          shim: {
-            fancybox: {
-              deps: ['css!https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css']
-            },
-            confirm: {
-              deps: ['css!https://cdn.bootcss.com/jquery-confirm/3.3.4/jquery-confirm.min.css']
-            }
-          },
-
-          // 加载超时
-          waitSeconds: 3
-        })
-      })
-  })
-</script>
-
-<script>
-  ;(function() {
-    var bp = document.createElement('script')
-    var curProtocol = window.location.protocol.split(':')[0]
-    if (curProtocol === 'https') {
-      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js'
-    } else {
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js'
-    }
-    var s = document.getElementsByTagName('script')[0]
-    s.parentNode.insertBefore(bp, s)
-  })()
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/algoliasearch@3.33.0/dist/algoliasearchLite.min.js"></script>
-<script></script>
