@@ -151,7 +151,7 @@ template {
   color: #fff;
 }
 body {
-  background: #eee;
+  background: rgba(97,165,255,0.5);
   color: #555;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 1em;
@@ -208,8 +208,8 @@ span.exturl {
 }
 a:hover,
 span.exturl:hover {
-  border-bottom-color: #222;
-  color: #222;
+  border-bottom-color: rgba(251,51,45,0.7);
+  color: rgba(251,51,45,0.7);
 }
 iframe,
 img,
@@ -872,8 +872,8 @@ pre .javascript .function {
   transition-property: background-color;
 }
 .btn:hover {
-  background: #222;
-  border-color: #222;
+  background: rgba(251,51,45,0.7);
+  border-color: rgba(251,51,45,0.7);
   color: #fff;
 }
 .btn + .btn {
@@ -931,7 +931,7 @@ pre .javascript .function {
 .pagination .prev:hover,
 .pagination .next:hover,
 .pagination .page-number:hover {
-  border-top-color: #222;
+  border-top-color: rgba(251,51,45,0.7);
 }
 .pagination .space {
   margin: 0;
@@ -963,7 +963,7 @@ pre .javascript .function {
   .pagination .prev:hover,
   .pagination .next:hover,
   .pagination .page-number:hover {
-    border-bottom-color: #222;
+    border-bottom-color: rgba(251,51,45,0.7);
   }
 }
 .comments {
@@ -980,8 +980,8 @@ pre .javascript .function {
   margin: 0.1em 0.2em;
 }
 .comment-button-group .comment-button.active {
-  background: #222;
-  border-color: #222;
+  background: rgba(251,51,45,0.7);
+  border-color: rgba(251,51,45,0.7);
   color: #fff;
 }
 .comment-position {
@@ -1002,7 +1002,7 @@ pre .javascript .function {
   padding-top: 0;
 }
 .back-to-top {
-  background: #222;
+  background: rgba(251,51,45,0.7);
   bottom: -100px;
   box-sizing: border-box;
   color: #fff;
@@ -1042,7 +1042,7 @@ pre .javascript .function {
   position: relative;
 }
 .headband {
-  background: #222;
+  background: rgba(251,51,45,0.7);
   height: 3px;
 }
 .site-meta {
@@ -1055,7 +1055,7 @@ pre .javascript .function {
   }
 }
 .brand {
-  background: #222;
+  background: rgba(251,51,45,0.7);
   border-bottom: none;
   color: #fff;
   display: inline-block;
@@ -1155,7 +1155,7 @@ pre .javascript .function {
 }
 .menu-item a:hover,
 .menu-item span.exturl:hover {
-  border-bottom-color: #222;
+  border-bottom-color: rgba(251,51,45,0.7);
 }
 .menu-item .fa {
   margin-right: 5px;
@@ -1294,7 +1294,7 @@ pre .javascript .function {
   border-bottom-color: #666;
 }
 .posts-collapse .post-header:hover::before {
-  background: #222;
+  background: rgba(251,51,45,0.7);
 }
 .posts-collapse .post-title {
   font-size: 1em;
@@ -1513,7 +1513,7 @@ article:last-child .post-eof {
 }
 .post-nav-item a:hover {
   border-bottom: none;
-  color: #222;
+  color: rgba(251,51,45,0.7);
 }
 .post-nav-item a:active {
   top: 2px;
@@ -1626,7 +1626,7 @@ article:last-child .post-eof {
   height: 30px;
 }
 .sidebar {
-  background: #222;
+  background: rgba(251,51,45,0.7);
   bottom: 0;
   box-shadow: inset 0 2px 6px #000;
   position: fixed;
@@ -1680,7 +1680,7 @@ article:last-child .post-eof {
   padding: 2px;
 }
 .site-author-name {
-  color: #222;
+  color: rgba(251,51,45,0.7);
   font-weight: 600;
   margin: 0;
   text-align: center;
@@ -1705,7 +1705,7 @@ article:last-child .post-eof {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ad961c;
+  background: #ad3c41;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1818,7 +1818,7 @@ article:last-child .post-eof {
   display: block;
 }
 .sidebar-toggle {
-  background: #222;
+  background: rgba(251,51,45,0.7);
   bottom: 45px;
   cursor: pointer;
   height: 14px;
@@ -2051,11 +2051,11 @@ article:last-child .post-eof {
   padding: 0px;
 }
 #event-list hr {
-  background: #222;
+  background: rgba(251,51,45,0.7);
   margin: 20px 0 45px 0;
 }
 #event-list hr::after {
-  background: #222;
+  background: rgba(251,51,45,0.7);
   color: #fff;
   content: 'NOW';
   display: inline-block;
@@ -2127,7 +2127,7 @@ article:last-child .post-eof {
   color: #dfdfdf;
 }
 #event-list li.event-now {
-  background: #222;
+  background: rgba(251,51,45,0.7);
   color: #fff;
   padding: 15px 0 15px 10px;
 }
@@ -2139,7 +2139,7 @@ article:last-child .post-eof {
   color: #fff !important;
 }
 #event-list li.event-future {
-  background: #222;
+  background: rgba(251,51,45,0.7);
   color: #fff;
   padding: 15px 0 15px 10px;
 }
@@ -2216,7 +2216,7 @@ ul.breadcrumb li + li:last-child {
   margin: 10px;
 }
 .tag-cloud a:hover {
-  color: #222 !important;
+  color: rgba(251,51,45,0.7) !important;
 }
 .header {
   margin: 0 auto;
@@ -2299,7 +2299,7 @@ ul.breadcrumb li + li:last-child {
   }
 }
 .sidebar {
-  background: #eee;
+  background: rgba(97,165,255,0.5);
   box-shadow: none;
   float: left;
   position: static;
@@ -2335,7 +2335,7 @@ ul.breadcrumb li + li:last-child {
   position: relative;
 }
 .site-meta {
-  background: #222;
+  background: rgba(251,51,45,0.7);
   color: #fff;
   padding: 20px 0;
 }
@@ -2484,8 +2484,8 @@ ul.breadcrumb li + li:last-child {
 }
 .sidebar a:hover,
 .sidebar span.exturl:hover {
-  border-bottom-color: #222;
-  color: #222;
+  border-bottom-color: rgba(251,51,45,0.7);
+  color: rgba(251,51,45,0.7);
 }
 .sidebar-inner {
   background: #fff;
@@ -2589,7 +2589,7 @@ ul.breadcrumb li + li:last-child {
   padding: initial;
 }
 .post-block {
-  background: #fff;
+  background: rgba(255,255,255,0.7);
   border-radius: initial;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   padding: 40px;
@@ -2600,7 +2600,7 @@ ul.breadcrumb li + li:last-child {
   margin-top: 12px;
 }
 .comments {
-  background: #fff;
+  background: rgba(255,255,255,0.7);
   border-radius: initial;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   margin: auto;
@@ -2626,7 +2626,7 @@ ul.breadcrumb li + li:last-child {
   display: none;
 }
 .pagination {
-  background: #fff;
+  background: rgba(255,255,255,0.7);
   border-radius: initial;
   border-top: initial;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
@@ -2665,13 +2665,13 @@ ul.breadcrumb li + li:last-child {
 }
 .post-body h1,
 .post-body h2 {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(97,165,255,0.5);
 }
 .post-body h3 {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(97,165,255,0.5);
 }
 .post-body h4 {
-  border-bottom: 1px dotted #eee;
+  border-bottom: 1px dotted rgba(97,165,255,0.5);
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrap {
