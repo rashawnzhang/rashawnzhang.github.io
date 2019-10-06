@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="1.计算图 用户不定义计算图时，系统会自动维护一个默认的计算图,tensorflow 会自动将定义的所有计算添加到默认的计算图  1tf.get_default_graph() # 获取当前的默认图   用户自己创建计算图，用123456```pythong1 = tf.Graph()with g1.as_default() :  a=tf.get_variable(&amp;quot;a&amp;quot;,[">
+  <meta name="description" content="1.计算图 用户不定义计算图时，系统会自动维护一个默认的计算图,tensorflow 会自动将定义的所有计算添加到默认的计算图  1tf.get_default_graph() # 获取当前的默认图   用户自己创建计算图，用with创建图指定为默认计算图后,下面的运算都在这个计算图内，变量为该计算图独有，不与其他计算图共享  1234g1 = tf.Graph()with g1.as_defau">
 <meta name="keywords" content="深度学习,博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tensorflow入门笔记2:计算图、张量、会话session">
 <meta property="og:url" content="http://rashawnzhang.github.io/2019/10/06/tensorflow入门笔记2:计算图、张量、会话session/index.html">
 <meta property="og:site_name" content="学习深度学习">
-<meta property="og:description" content="1.计算图 用户不定义计算图时，系统会自动维护一个默认的计算图,tensorflow 会自动将定义的所有计算添加到默认的计算图  1tf.get_default_graph() # 获取当前的默认图   用户自己创建计算图，用123456```pythong1 = tf.Graph()with g1.as_default() :  a=tf.get_variable(&amp;quot;a&amp;quot;,[">
+<meta property="og:description" content="1.计算图 用户不定义计算图时，系统会自动维护一个默认的计算图,tensorflow 会自动将定义的所有计算添加到默认的计算图  1tf.get_default_graph() # 获取当前的默认图   用户自己创建计算图，用with创建图指定为默认计算图后,下面的运算都在这个计算图内，变量为该计算图独有，不与其他计算图共享  1234g1 = tf.Graph()with g1.as_defau">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-06T14:39:39.266Z">
+<meta property="og:updated_time" content="2019-10-06T15:31:11.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow入门笔记2:计算图、张量、会话session">
-<meta name="twitter:description" content="1.计算图 用户不定义计算图时，系统会自动维护一个默认的计算图,tensorflow 会自动将定义的所有计算添加到默认的计算图  1tf.get_default_graph() # 获取当前的默认图   用户自己创建计算图，用123456```pythong1 = tf.Graph()with g1.as_default() :  a=tf.get_variable(&amp;quot;a&amp;quot;,[">
+<meta name="twitter:description" content="1.计算图 用户不定义计算图时，系统会自动维护一个默认的计算图,tensorflow 会自动将定义的所有计算添加到默认的计算图  1tf.get_default_graph() # 获取当前的默认图   用户自己创建计算图，用with创建图指定为默认计算图后,下面的运算都在这个计算图内，变量为该计算图独有，不与其他计算图共享  1234g1 = tf.Graph()with g1.as_defau">
   <link rel="canonical" href="http://rashawnzhang.github.io/2019/10/06/tensorflow入门笔记2:计算图、张量、会话session/">
 
 
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-10-06 22:02:07 / 修改时间：22:39:39" itemprop="dateCreated datePublished" datetime="2019-10-06T22:02:07+08:00">2019-10-06</time>
+              <time title="创建时间：2019-10-06 22:02:07 / 修改时间：23:31:11" itemprop="dateCreated datePublished" datetime="2019-10-06T22:02:07+08:00">2019-10-06</time>
             </span>
           
             
@@ -281,11 +281,15 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.get_default_graph() <span class="comment"># 获取当前的默认图</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>用户自己创建计算图，用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```python</span><br><span class="line">g1 = tf.Graph()</span><br><span class="line">with g1.as_default() :</span><br><span class="line">  a=tf.get_variable(&quot;a&quot;,[2],initializer=tf.ones_initializer())</span><br><span class="line">  b=tf.get_variable(&quot;b&quot;,[2],initializer=tf.zeros_initializer())</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>获取某个变量的计算图，如变量<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```python</span><br><span class="line">a.graph()</span><br></pre></td></tr></table></figure></p>
-</li>
+<li>用户自己创建计算图，用<code>with</code>创建图指定为默认计算图后,下面的运算都在这个计算图内，变量为该计算图独有，不与其他计算图共享</li>
 </ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">g1 = tf.Graph()</span><br><span class="line"><span class="keyword">with</span> g1.as_default() :</span><br><span class="line">  a=tf.get_variable(<span class="string">"a"</span>,[<span class="number">2</span>],initializer=tf.ones_initializer())</span><br><span class="line">  b=tf.get_variable(<span class="string">"b"</span>,[<span class="number">2</span>],initializer=tf.zeros_initializer())</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取某个变量的计算图，如变量<code>a</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.graph()</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 <h2 id="2-张量"><a href="#2-张量" class="headerlink" title="2.张量"></a>2.张量</h2><ul>
 <li>张量只是引用了程序中的运算结果而不是一个真正的数组，张量保存的是运算结果的属性，而不是真正的数字</li>
@@ -293,14 +297,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </span><br><span class="line">a=tf.constant([<span class="number">1.0</span>,<span class="number">2.0</span>],name =<span class="string">"a"</span>) </span><br><span class="line">b=tf.constant([<span class="number">3.0</span>,<span class="number">4.0</span>],name =<span class="string">"b"</span>) </span><br><span class="line">result=a+b </span><br><span class="line">print(result) </span><br><span class="line">＃输出 Tensor (<span class="string">"add:0"</span>，shape=(<span class="number">2</span>,), dtype=float32)</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<figure class="highlight plain"><figcaption><span>```:由加法得来的第一个输出</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```shape=(2,)```:形状为2的数组，只有一个维度，注意不是2*1，</span><br><span class="line">```dtype=float32```:元素类型为```float32</span><br></pre></td></tr></table></figure>
-</blockquote>
+<p><code>add:0</code>:由加法得来的第一个输出<br><code>shape=(2,)</code>:形状为2的数组，只有一个维度，注意不是2*1，<br><code>dtype=float32</code>:元素类型为<code>float32</code></p>
 <blockquote>
-<blockquote>
-<p>要想获得<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用```sess.run(result)</span><br></pre></td></tr></table></figure></p>
+<p>要想获得<code>result</code>的真值需定义会话<code>sess</code>进行真正的运算<br>使用<code>sess.run(result)</code><br>或<code>result.eval(session=sess)</code><br>或<code>sess</code>为默认会话时<code>result.eval()</code> </p>
 </blockquote>
 </blockquote>
-<p>或<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">或```sess```为默认会话时```result.eval()``` </span><br><span class="line">&gt;&gt;</span><br><span class="line">&gt;</span><br><span class="line"></span><br><span class="line">## 3.会话(Session)</span><br><span class="line"></span><br><span class="line">- 定义会话</span><br><span class="line">```python</span><br><span class="line"># 接上</span><br><span class="line">with tf.Session() as sess :</span><br><span class="line">  tf.initialize_all_variables() </span><br><span class="line">  print(sess.run(result))</span><br><span class="line"></span><br><span class="line">＃输出［ 4. 6.]</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-会话-Session"><a href="#3-会话-Session" class="headerlink" title="3.会话(Session)"></a>3.会话(Session)</h2><ul>
+<li>定义会话</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 接上</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess :</span><br><span class="line">  tf.initialize_all_variables() </span><br><span class="line">  print(sess.run(result))</span><br><span class="line"></span><br><span class="line">＃输出［ <span class="number">4.</span> <span class="number">6.</span>]</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>指定sess为默认会话</li>
 </ul>
@@ -386,7 +392,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-计算图"><span class="nav-number">1.</span> <span class="nav-text">1.计算图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-张量"><span class="nav-number">2.</span> <span class="nav-text">2.张量</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-计算图"><span class="nav-number">1.</span> <span class="nav-text">1.计算图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-张量"><span class="nav-number">2.</span> <span class="nav-text">2.张量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-会话-Session"><span class="nav-number">3.</span> <span class="nav-text">3.会话(Session)</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->

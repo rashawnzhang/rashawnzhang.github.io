@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="学习深度学习">
 <meta property="og:description" content="1.placeholder 机制 placeholder 机制的作用   网络的输入数据是一个矩阵，我们把多个这样的矩阵数据打包成一个很大的数据集，如果将这个数据集当作变量或常量一下子输入到网络中，那么就需要定义很多的网络输入常量，于是计算图上将会涌现大量的输入节点。这是不利的，这些节点的利用率很低。placehoder 机制被设计用来解决这个问题。编程时只需要将数据通过 placeholder">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-06T14:57:39.970Z">
+<meta property="og:updated_time" content="2019-10-06T15:28:52.029Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow入门笔记3:placeholder机制和Variable变量">
 <meta name="twitter:description" content="1.placeholder 机制 placeholder 机制的作用   网络的输入数据是一个矩阵，我们把多个这样的矩阵数据打包成一个很大的数据集，如果将这个数据集当作变量或常量一下子输入到网络中，那么就需要定义很多的网络输入常量，于是计算图上将会涌现大量的输入节点。这是不利的，这些节点的利用率很低。placehoder 机制被设计用来解决这个问题。编程时只需要将数据通过 placeholder">
@@ -235,7 +235,7 @@
                 
               
 
-              <time title="创建时间：2019-10-06 22:40:47 / 修改时间：22:57:39" itemprop="dateCreated datePublished" datetime="2019-10-06T22:40:47+08:00">2019-10-06</time>
+              <time title="创建时间：2019-10-06 22:40:47 / 修改时间：23:28:52" itemprop="dateCreated datePublished" datetime="2019-10-06T22:40:47+08:00">2019-10-06</time>
             </span>
           
             
@@ -282,12 +282,19 @@
 <p>网络的输入数据是一个矩阵，我们把多个这样的矩阵数据打包成一个很大的数据集，如果将这个数据集当作变量或常量一下子输入到网络中，那么就需要定义很多的网络输入常量，于是计算图上将会涌现大量的输入节点。这是不利的，这些节点的利用率很低。<br>placehoder 机制被设计用来解决这个问题。编程时只需要将数据通过 placeholder 传入 TensorFlow 计算图即可。</p>
 </blockquote>
 <ul>
-<li>使用 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```python</span><br><span class="line">import tensorflow as tf</span><br><span class="line">a = tf.placeholder(tf.float32,shape=(2),name=&quot;input&quot;) </span><br><span class="line">b = tf.placeholder(tf.float32,shape=(2),name=&quot;input&quot;)</span><br><span class="line">result = a+b</span><br><span class="line"></span><br><span class="line">with tf.Session() as sess :</span><br><span class="line">  sess.run(result,feed_dict=&#123;a:[1.0,2.0],b:[3.0,4.0]&#125;)</span><br><span class="line">  print(result)</span><br><span class="line">  ＃输出[4.,6.]</span><br></pre></td></tr></table></figure></li>
+<li>使用 <code>tf.placeholder()</code></li>
 </ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">a = tf.placeholder(tf.float32,shape=(<span class="number">2</span>),name=<span class="string">"input"</span>) </span><br><span class="line">b = tf.placeholder(tf.float32,shape=(<span class="number">2</span>),name=<span class="string">"input"</span>)</span><br><span class="line">result = a+b</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess :</span><br><span class="line">  sess.run(result,feed_dict=&#123;a:[<span class="number">1.0</span>,<span class="number">2.0</span>],b:[<span class="number">3.0</span>,<span class="number">4.0</span>]&#125;)</span><br><span class="line">  print(result)</span><br><span class="line">  ＃输出[<span class="number">4.</span>,<span class="number">6.</span>]</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 <blockquote>
-<p>在 placeholder 定义时，这个位置上的数据类型<figure class="highlight plain"><figcaption><span>placeholder 中数据的维度信息```shape```可以根据提供的数据推导得出，所以不一定要给出；或者对于不确定的维度，填入```None```即可。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">这里输入```a```和```b```定义为常量，这里将它们定义为一个```tf.placeholder()```，在运行会话时需要通过```sess.run()```函数的```feed_dict```来提供```a```和```b```的取值。```feed_dict```是一个字典```dict```，在字典中需要给出每个用到的```placeholder```的取值。</span><br><span class="line">&gt;</span><br><span class="line"></span><br><span class="line">## 2.Varibale变量</span><br><span class="line"></span><br><span class="line">- ```tf.Variable()```创建变量</span><br><span class="line">```python</span><br><span class="line">tf.Variable(initial_value,</span><br><span class="line">             trainable=True, </span><br><span class="line">             collections=None, </span><br><span class="line">             validate_shape=True, </span><br><span class="line">             name=None)</span><br></pre></td></tr></table></figure></p>
+<p>在 placeholder 定义时，这个位置上的数据类型<code>dtype</code>是需要指定且不可以改变的。 placeholder 中数据的维度信息<code>shape</code>可以根据提供的数据推导得出，所以不一定要给出；或者对于不确定的维度，填入<code>None</code>即可。<br>这里输入<code>a</code>和<code>b</code>定义为常量，这里将它们定义为一个<code>tf.placeholder()</code>，在运行会话时需要通过<code>sess.run()</code>函数的<code>feed_dict</code>来提供<code>a</code>和<code>b</code>的取值。<code>feed_dict</code>是一个字典<code>dict</code>，在字典中需要给出每个用到的<code>placeholder</code>的取值。</p>
 </blockquote>
+<h2 id="2-Varibale变量"><a href="#2-Varibale变量" class="headerlink" title="2.Varibale变量"></a>2.Varibale变量</h2><ul>
+<li><code>tf.Variable()</code>创建变量<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tf.Variable(initial_value,</span><br><span class="line">             trainable=<span class="literal">True</span>, </span><br><span class="line">             collections=<span class="literal">None</span>, </span><br><span class="line">             validate_shape=<span class="literal">True</span>, </span><br><span class="line">             name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -304,15 +311,31 @@
 <tr>
 <td>trainable</td>
 <td>bool</td>
-<td>是否加入到<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">collections|list|指定该图变量的类型、默认为```GraphKeys.GLOBAL_VARIABLES</span><br></pre></td></tr></table></figure></td>
+<td>是否加入到<code>GraphKeys.TRAINABLE_VARIABLES</code>被迭代优化</td>
+</tr>
+<tr>
+<td>collections</td>
+<td>list</td>
+<td>指定该图变量的类型、默认为<code>GraphKeys.GLOBAL_VARIABLES</code></td>
+</tr>
+<tr>
+<td>validate_shape</td>
+<td>bool</td>
+<td>是否进行类型和维度检查</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>变量的名称，如果没有指定则系统会自动分配一个唯一的值</td>
 </tr>
 </tbody></table>
-<p>validate_shape|bool|是否进行类型和维度检查<br>name|string|变量的名称，如果没有指定则系统会自动分配一个唯一的值</p>
 <ul>
-<li><p>在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```python</span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">  sess.run(init)</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>管理变量的变量空间</p>
-</li>
+<li>在<code>sess</code>对变量运算前初始化所有变量</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">  sess.run(init)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>管理变量的变量空间</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"one"</span>) :</span><br><span class="line">a = tf.get_variable (<span class="string">"a"</span>,shape=[<span class="number">1</span>],initializer=tf.constant_initializer(<span class="number">1.0</span>))</span><br></pre></td></tr></table></figure>
 
@@ -396,7 +419,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-placeholder-机制"><span class="nav-number">1.</span> <span class="nav-text">1.placeholder 机制</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-placeholder-机制"><span class="nav-number">1.</span> <span class="nav-text">1.placeholder 机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Varibale变量"><span class="nav-number">2.</span> <span class="nav-text">2.Varibale变量</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
