@@ -29,7 +29,8 @@
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
     
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -584,10 +585,9 @@ placeholder 机制的作用
                                 1.计算图
 用户不定义计算图时，系统会自动维护一个默认的计算图,tensorflow 会自动将定义的所有计算添加到默认的计算图
 
-1tf.get_default_graph() # 获取当前的默认图
+tf.get_default_graph() # 获取当前的默认图
 
-
-用户自己创建计算图，用with创建图
+用户自己创建计算图，用with创建图指定
                             
                         </div>
                         <div class="publish-info">
@@ -627,13 +627,12 @@ placeholder 机制的作用
                         <div class="summary block-with-text">
                             
                                 备份、更换、更新软件源备份软件源
-1sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
-
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
 
 修改文件
-1sudo vi /etc/apt/sources.list
+sudo vi /etc/apt/sources.list
+国内主要软件源
 
-国内主要
                             
                         </div>
                         <div class="publish-info">
@@ -673,9 +672,9 @@ placeholder 机制的作用
                         <div class="summary block-with-text">
                             
                                 前提1.安装好tensorflow的gpu版本及其对应CUDA2.有GPU
-1.指定某一块或多块gpu运行方法一12# 指定第二块gpuCUDA_VISIBLE_DEVICES=1 python &#123;xxx&#125;.py
-
-方法
+1.指定某一块或多块gpu运行方法一# 指定第二块gpu
+CUDA_VISIBLE_DEVICES=1 python {xxx}.py
+方法二export CUDA
                             
                         </div>
                         <div class="publish-info">

@@ -29,7 +29,8 @@
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
     
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -531,10 +532,9 @@ placeholder 机制的作用
                                     1.计算图
 用户不定义计算图时，系统会自动维护一个默认的计算图,tensorflow 会自动将定义的所有计算添加到默认的计算图
 
-1tf.get_default_graph() # 获取当前的默认图
+tf.get_default_graph() # 获取当前的默认图
 
-
-用户自己创建计算图，用with创建图
+用户自己创建计算图，用with创建图指定
                                 
                             </div>
                             <div class="publish-info">
