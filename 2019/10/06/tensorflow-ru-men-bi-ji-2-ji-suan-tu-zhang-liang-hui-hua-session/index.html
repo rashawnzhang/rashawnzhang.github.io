@@ -4,11 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="tensorflow入门笔记1:指定GPU及分配显存, 深度学习,博客">
-    <meta name="description" content="前提1.安装好tensorflow的gpu版本及其对应CUDA2.有GPU
-1.指定某一块或多块gpu运行方法一# 指定第二块gpu
-CUDA_VISIBLE_DEVICES=1 python {xxx}.py
-方法二export CUDA">
+    <meta name="keywords" content="tensorflow入门笔记2:计算图、张量、会话session, 深度学习,博客">
+    <meta name="description" content="1.计算图
+用户不定义计算图时，系统会自动维护一个默认的计算图,tensorflow 会自动将定义的所有计算添加到默认的计算图
+
+tf.get_default_graph() # 获取当前的默认图
+
+用户自己创建计算图，用with创建图指定">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +18,7 @@ CUDA_VISIBLE_DEVICES=1 python {xxx}.py
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>tensorflow入门笔记1:指定GPU及分配显存 | 努力学习</title>
+    <title>tensorflow入门笔记2:计算图、张量、会话session | 努力学习</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,13 +312,13 @@ CUDA_VISIBLE_DEVICES=1 python {xxx}.py
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        tensorflow入门笔记1:指定GPU及分配显存
+                        tensorflow入门笔记2:计算图、张量、会话session
                     </div>
                 </div>
             </div>
@@ -448,7 +450,7 @@ CUDA_VISIBLE_DEVICES=1 python {xxx}.py
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-09-16
+                    2019-10-06
                 </div>
 
                 
@@ -464,72 +466,55 @@ CUDA_VISIBLE_DEVICES=1 python {xxx}.py
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><h4 id="1-安装好tensorflow的gpu版本及其对应CUDA"><a href="#1-安装好tensorflow的gpu版本及其对应CUDA" class="headerlink" title="1.安装好tensorflow的gpu版本及其对应CUDA"></a>1.安装好tensorflow的gpu版本及其对应CUDA</h4><h4 id="2-有GPU"><a href="#2-有GPU" class="headerlink" title="2.有GPU"></a>2.有GPU</h4><a id="more"></a>
-<h2 id="1-指定某一块或多块gpu运行"><a href="#1-指定某一块或多块gpu运行" class="headerlink" title="1.指定某一块或多块gpu运行"></a>1.指定某一块或多块gpu运行</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 指定第二块gpu</span>
-CUDA_VISIBLE_DEVICES<span class="token operator">=</span>1 python <span class="token punctuation">{</span>xxx<span class="token punctuation">}</span>.py</code></pre>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">export</span> CUDA_VISIBLE_DEVICES<span class="token operator">=</span>1
-python <span class="token punctuation">{</span>xxx<span class="token punctuation">}</span>.py</code></pre>
-<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> os
-os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"CUDA_VISIBLE_DEVICES"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"2"</span></code></pre>
-<p>参数参考：</p>
-<table>
-<thead>
-<tr>
-<th align="left">Environment Variable Syntax</th>
-<th align="left">Results</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">CUDA_VISIBLE_DEVICES=1</td>
-<td align="left">Only device 1 will be seen</td>
-</tr>
-<tr>
-<td align="left">CUDA_VISIBLE_DEVICES=0,1</td>
-<td align="left">Devices 0 and 1 will be visible</td>
-</tr>
-<tr>
-<td align="left">CUDA_VISIBLE_DEVICES=”0,1”</td>
-<td align="left">Same as above, quotation marks are optional</td>
-</tr>
-<tr>
-<td align="left">CUDA_VISIBLE_DEVICES=0,2,3</td>
-<td align="left">Devices 0, 2, 3 will be visible; device 1 is masked</td>
-</tr>
-<tr>
-<td align="left">CUDA_VISIBLE_DEVICES=””</td>
-<td align="left">No GPU will be visible</td>
-</tr>
-</tbody></table>
-<h2 id="2-配置gpu显存使用率"><a href="#2-配置gpu显存使用率" class="headerlink" title="2.配置gpu显存使用率"></a>2.配置gpu显存使用率</h2><h3 id="方法一：通过配置Session的运行参数配置gpu的使用"><a href="#方法一：通过配置Session的运行参数配置gpu的使用" class="headerlink" title="方法一：通过配置Session的运行参数配置gpu的使用"></a>方法一：通过配置Session的运行参数配置gpu的使用</h3><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 通过配置Session的运行参数配置gpu的使用</span>
+                <h2 id="1-计算图"><a href="#1-计算图" class="headerlink" title="1.计算图"></a>1.计算图</h2><ul>
+<li>用户不定义计算图时，系统会自动维护一个默认的计算图,tensorflow 会自动将定义的所有计算添加到默认的计算图</li>
+</ul>
+<pre class=" language-python"><code class="language-python">tf<span class="token punctuation">.</span>get_default_graph<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 获取当前的默认图</span></code></pre>
+<ul>
+<li>用户自己创建计算图，用<code>with</code>创建图指定为默认计算图后,下面的运算都在这个计算图内，变量为该计算图独有，不与其他计算图共享</li>
+</ul>
+<pre class=" language-python"><code class="language-python">g1 <span class="token operator">=</span> tf<span class="token punctuation">.</span>Graph<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">with</span> g1<span class="token punctuation">.</span>as_default<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+  a<span class="token operator">=</span>tf<span class="token punctuation">.</span>get_variable<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>initializer<span class="token operator">=</span>tf<span class="token punctuation">.</span>ones_initializer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  b<span class="token operator">=</span>tf<span class="token punctuation">.</span>get_variable<span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>initializer<span class="token operator">=</span>tf<span class="token punctuation">.</span>zeros_initializer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<ul>
+<li>获取某个变量的计算图，如变量<code>a</code></li>
+</ul>
+<pre class=" language-python"><code class="language-python">a<span class="token punctuation">.</span>graph<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<a id="more"></a>
+<h2 id="2-张量"><a href="#2-张量" class="headerlink" title="2.张量"></a>2.张量</h2><ul>
+<li>张量只是引用了程序中的运算结果而不是一个真正的数组，张量保存的是运算结果的属性，而不是真正的数字</li>
+</ul>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf 
+a<span class="token operator">=</span>tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1.0</span><span class="token punctuation">,</span><span class="token number">2.0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>name <span class="token operator">=</span><span class="token string">"a"</span><span class="token punctuation">)</span> 
+b<span class="token operator">=</span>tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3.0</span><span class="token punctuation">,</span><span class="token number">4.0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>name <span class="token operator">=</span><span class="token string">"b"</span><span class="token punctuation">)</span> 
+result<span class="token operator">=</span>a<span class="token operator">+</span>b 
+<span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> 
+＃输出 Tensor <span class="token punctuation">(</span><span class="token string">"add:0"</span>，shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>float32<span class="token punctuation">)</span></code></pre>
+<blockquote>
+<p><code>add:0</code>:由加法得来的第一个输出<br><code>shape=(2,)</code>:形状为2的数组，只有一个维度，注意不是2*1，<br><code>dtype=float32</code>:元素类型为<code>float32</code></p>
+<blockquote>
+<p>要想获得<code>result</code>的真值需定义会话<code>sess</code>进行真正的运算<br>使用<code>sess.run(result)</code><br>或<code>result.eval(session=sess)</code><br>或<code>sess</code>为默认会话时<code>result.eval()</code> </p>
+</blockquote>
+</blockquote>
+<h2 id="3-会话-Session"><a href="#3-会话-Session" class="headerlink" title="3.会话(Session)"></a>3.会话(Session)</h2><ul>
+<li>定义会话</li>
+</ul>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 接上</span>
+<span class="token keyword">with</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> sess <span class="token punctuation">:</span>
+  tf<span class="token punctuation">.</span>initialize_all_variables<span class="token punctuation">(</span><span class="token punctuation">)</span> 
+  <span class="token keyword">print</span><span class="token punctuation">(</span>sess<span class="token punctuation">.</span>run<span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-config <span class="token operator">=</span> tf<span class="token punctuation">.</span>ConfigProto<span class="token punctuation">(</span>allow_soft_placement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> allow_soft_placement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-config<span class="token punctuation">.</span>gpu_options<span class="token punctuation">.</span>per_process_gpu_memory_fraction <span class="token operator">=</span> <span class="token number">0.4</span>  <span class="token comment" spellcheck="true">#占用40%显存</span>
-sess <span class="token operator">=</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span>config<span class="token operator">=</span>config）</code></pre>
-<p>参数参考：</p>
-<table>
-<thead>
-<tr>
-<th>Syntax</th>
-<th align="left">Results</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>tf.ConfigProto(log_device_placement=True)</td>
-<td align="left">记录设备指派情况</td>
-</tr>
-<tr>
-<td>tf.ConfigProto(allow_soft_placement=True）</td>
-<td align="left">自动选择一个运行备</td>
-</tr>
-<tr>
-<td>config.gpu_options.allow_growth = True</td>
-<td align="left">动态申请显存</td>
-</tr>
-<tr>
-<td>config.gpu_options.per_process_gpu_memory_fraction = 0.4</td>
-<td align="left">限制GPU使用率</td>
-</tr>
-</tbody></table>
+＃输出［ <span class="token number">4</span><span class="token punctuation">.</span> <span class="token number">6</span><span class="token punctuation">.</span><span class="token punctuation">]</span></code></pre>
+<ul>
+<li>指定sess为默认会话</li>
+</ul>
+<pre class=" language-python"><code class="language-python">sess <span class="token operator">=</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">with</span> sess<span class="token punctuation">.</span><span class="token keyword">as</span> default<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token operator">&lt;</span><span class="token keyword">with</span><span class="token operator">-</span>block<span class="token operator">></span></code></pre>
+<blockquote>
+<p>在定义计算时tensorflow会自动生成一个默认的计算图，如果没有特殊指定，定义的运算会自动加入这个计算图中。通过手动指定，会话也可以成为默认的(tensorflow不会自动生成默认的会话)</p>
+</blockquote>
 
             </div>
             <hr/>
@@ -690,8 +675,8 @@ sess <span class="token operator">=</span> tf<span class="token punctuation">.</
                 </a>
             </div>
             <br/>
-            <a  href="/2019/09/16/tensorflow入门笔记1:指定GPU及分配显存/">
-                    《tensorflow入门笔记1:指定GPU及分配显存》
+            <a  href="/2019/10/06/tensorflow-ru-men-bi-ji-2-ji-suan-tu-zhang-liang-hui-hua-session/">
+                    《tensorflow入门笔记2:计算图、张量、会话session》
             </a> 由
             <a href="http://rashawnzhang.github.io">
                 张宇轩
@@ -736,7 +721,52 @@ sess <span class="token operator">=</span> tf<span class="token punctuation">.</
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/09/16/ubuntu常用命令/">
+                <a href="/2019/10/06/tensorflow-ru-men-bi-ji-3-placeholder-ji-zhi-he-variable-bian-liang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="tensorflow入门笔记3:placeholder机制和Variable变量">
+                        
+                        <span class="card-title">tensorflow入门笔记3:placeholder机制和Variable变量</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            1.placeholder 机制
+placeholder 机制的作用
+
+
+网络的输入数据是一个矩阵，我们把多个这样的矩阵数据打包成一个很大的数据集，如果将这个数据集当作变量或常量一下子输入到网络中，那么就需要定义很多的网络输入常量，于是计算
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-06
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/tensorflow/" class="post-category">
+                                    tensorflow
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/09/16/ubuntu-chang-yong-ming-ling/">
                     <div class="card-image">
                         
                         
@@ -758,9 +788,9 @@ sudo vi /etc/apt/sources.list
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-09-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -773,51 +803,6 @@ sudo vi /etc/apt/sources.list
                         </span>
                     </div>
                 </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/09/16/tensorflow入门笔记1:指定GPU及分配显存/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="tensorflow入门笔记1:指定GPU及分配显存">
-                        
-                        <span class="card-title">tensorflow入门笔记1:指定GPU及分配显存</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            前提1.安装好tensorflow的gpu版本及其对应CUDA2.有GPU
-1.指定某一块或多块gpu运行方法一# 指定第二块gpu
-CUDA_VISIBLE_DEVICES=1 python {xxx}.py
-方法二export CUDA
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-16
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/tensorflow/" class="post-category">
-                                    tensorflow
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
                 
             </div>
         </div>
