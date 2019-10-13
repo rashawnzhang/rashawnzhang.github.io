@@ -33,8 +33,7 @@ placeholder 机制的作用
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
     
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -475,7 +474,7 @@ placeholder 机制的作用
 <ul>
 <li>使用 <code>tf.placeholder()</code></li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
 a <span class="token operator">=</span> tf<span class="token punctuation">.</span>placeholder<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>float32<span class="token punctuation">,</span>shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">"input"</span><span class="token punctuation">)</span> 
 b <span class="token operator">=</span> tf<span class="token punctuation">.</span>placeholder<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>float32<span class="token punctuation">,</span>shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">"input"</span><span class="token punctuation">)</span>
 result <span class="token operator">=</span> a<span class="token operator">+</span>b
@@ -483,17 +482,17 @@ result <span class="token operator">=</span> a<span class="token operator">+</sp
 <span class="token keyword">with</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> sess <span class="token punctuation">:</span>
   sess<span class="token punctuation">.</span>run<span class="token punctuation">(</span>result<span class="token punctuation">,</span>feed_dict<span class="token operator">=</span><span class="token punctuation">{</span>a<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">1.0</span><span class="token punctuation">,</span><span class="token number">2.0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>b<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">3.0</span><span class="token punctuation">,</span><span class="token number">4.0</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
-  ＃输出<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  ＃输出<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">.</span><span class="token punctuation">]</span></code></pre>
 <a id="more"></a>
 <blockquote>
 <p>在 placeholder 定义时，这个位置上的数据类型<code>dtype</code>是需要指定且不可以改变的。 placeholder 中数据的维度信息<code>shape</code>可以根据提供的数据推导得出，所以不一定要给出；或者对于不确定的维度，填入<code>None</code>即可。<br>这里输入<code>a</code>和<code>b</code>定义为常量，这里将它们定义为一个<code>tf.placeholder()</code>，在运行会话时需要通过<code>sess.run()</code>函数的<code>feed_dict</code>来提供<code>a</code>和<code>b</code>的取值。<code>feed_dict</code>是一个字典<code>dict</code>，在字典中需要给出每个用到的<code>placeholder</code>的取值。</p>
 </blockquote>
 <h2 id="2-Varibale变量"><a href="#2-Varibale变量" class="headerlink" title="2.Varibale变量"></a>2.Varibale变量</h2><ul>
-<li><code>tf.Variable()</code>创建变量<pre class="line-numbers language-python"><code class="language-python">tf<span class="token punctuation">.</span>Variable<span class="token punctuation">(</span>initial_value<span class="token punctuation">,</span>
+<li><code>tf.Variable()</code>创建变量<pre class=" language-python"><code class="language-python">tf<span class="token punctuation">.</span>Variable<span class="token punctuation">(</span>initial_value<span class="token punctuation">,</span>
            trainable<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> 
            collections<span class="token operator">=</span>None<span class="token punctuation">,</span> 
            validate_shape<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> 
-           name<span class="token operator">=</span>None<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+           name<span class="token operator">=</span>None<span class="token punctuation">)</span></code></pre>
 </li>
 </ul>
 <table>
@@ -533,14 +532,14 @@ result <span class="token operator">=</span> a<span class="token operator">+</sp
 <ul>
 <li>在<code>sess</code>对变量运算前初始化所有变量</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python">init <span class="token operator">=</span> tf<span class="token punctuation">.</span>global_variables_initializer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre class=" language-python"><code class="language-python">init <span class="token operator">=</span> tf<span class="token punctuation">.</span>global_variables_initializer<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">with</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> sess<span class="token punctuation">:</span>
-  sess<span class="token punctuation">.</span>run<span class="token punctuation">(</span>init<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+  sess<span class="token punctuation">.</span>run<span class="token punctuation">(</span>init<span class="token punctuation">)</span></code></pre>
 <ul>
 <li>管理变量的变量空间</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">with</span> tf<span class="token punctuation">.</span>variable_scope<span class="token punctuation">(</span><span class="token string">"one"</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
-a <span class="token operator">=</span> tf<span class="token punctuation">.</span>get_variable <span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span>shape<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>initializer<span class="token operator">=</span>tf<span class="token punctuation">.</span>constant_initializer<span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">with</span> tf<span class="token punctuation">.</span>variable_scope<span class="token punctuation">(</span><span class="token string">"one"</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+a <span class="token operator">=</span> tf<span class="token punctuation">.</span>get_variable <span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span>shape<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>initializer<span class="token operator">=</span>tf<span class="token punctuation">.</span>constant_initializer<span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
 <blockquote>
 <ul>
 <li>以上代码在名为<code>one</code>的变量空间内创建名字为<code>a</code>的变量;</li>

@@ -34,8 +34,7 @@ tf.get_default_graph() # 获取当前的默认图
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
     
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -470,28 +469,28 @@ tf.get_default_graph() # 获取当前的默认图
                 <h2 id="1-计算图"><a href="#1-计算图" class="headerlink" title="1.计算图"></a>1.计算图</h2><ul>
 <li>用户不定义计算图时，系统会自动维护一个默认的计算图,tensorflow 会自动将定义的所有计算添加到默认的计算图</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python">tf<span class="token punctuation">.</span>get_default_graph<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 获取当前的默认图</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-python"><code class="language-python">tf<span class="token punctuation">.</span>get_default_graph<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 获取当前的默认图</span></code></pre>
 <ul>
 <li>用户自己创建计算图，用<code>with</code>创建图指定为默认计算图后,下面的运算都在这个计算图内，变量为该计算图独有，不与其他计算图共享</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python">g1 <span class="token operator">=</span> tf<span class="token punctuation">.</span>Graph<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre class=" language-python"><code class="language-python">g1 <span class="token operator">=</span> tf<span class="token punctuation">.</span>Graph<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">with</span> g1<span class="token punctuation">.</span>as_default<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
   a<span class="token operator">=</span>tf<span class="token punctuation">.</span>get_variable<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>initializer<span class="token operator">=</span>tf<span class="token punctuation">.</span>ones_initializer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-  b<span class="token operator">=</span>tf<span class="token punctuation">.</span>get_variable<span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>initializer<span class="token operator">=</span>tf<span class="token punctuation">.</span>zeros_initializer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+  b<span class="token operator">=</span>tf<span class="token punctuation">.</span>get_variable<span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>initializer<span class="token operator">=</span>tf<span class="token punctuation">.</span>zeros_initializer<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
 <ul>
 <li>获取某个变量的计算图，如变量<code>a</code></li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python">a<span class="token punctuation">.</span>graph<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class=" language-python"><code class="language-python">a<span class="token punctuation">.</span>graph<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 <a id="more"></a>
 <h2 id="2-张量"><a href="#2-张量" class="headerlink" title="2.张量"></a>2.张量</h2><ul>
 <li>张量只是引用了程序中的运算结果而不是一个真正的数组，张量保存的是运算结果的属性，而不是真正的数字</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf 
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf 
 a<span class="token operator">=</span>tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1.0</span><span class="token punctuation">,</span><span class="token number">2.0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>name <span class="token operator">=</span><span class="token string">"a"</span><span class="token punctuation">)</span> 
 b<span class="token operator">=</span>tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3.0</span><span class="token punctuation">,</span><span class="token number">4.0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>name <span class="token operator">=</span><span class="token string">"b"</span><span class="token punctuation">)</span> 
 result<span class="token operator">=</span>a<span class="token operator">+</span>b 
 <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> 
-＃输出 Tensor <span class="token punctuation">(</span><span class="token string">"add:0"</span>，shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>float32<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+＃输出 Tensor <span class="token punctuation">(</span><span class="token string">"add:0"</span>，shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>float32<span class="token punctuation">)</span></code></pre>
 <blockquote>
 <p><code>add:0</code>:由加法得来的第一个输出<br><code>shape=(2,)</code>:形状为2的数组，只有一个维度，注意不是2*1，<br><code>dtype=float32</code>:元素类型为<code>float32</code></p>
 <blockquote>
@@ -501,18 +500,18 @@ result<span class="token operator">=</span>a<span class="token operator">+</span
 <h2 id="3-会话-Session"><a href="#3-会话-Session" class="headerlink" title="3.会话(Session)"></a>3.会话(Session)</h2><ul>
 <li>定义会话</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 接上</span>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 接上</span>
 <span class="token keyword">with</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> sess <span class="token punctuation">:</span>
   tf<span class="token punctuation">.</span>initialize_all_variables<span class="token punctuation">(</span><span class="token punctuation">)</span> 
   <span class="token keyword">print</span><span class="token punctuation">(</span>sess<span class="token punctuation">.</span>run<span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-＃输出［ <span class="token number">4</span><span class="token punctuation">.</span> <span class="token number">6</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+＃输出［ <span class="token number">4</span><span class="token punctuation">.</span> <span class="token number">6</span><span class="token punctuation">.</span><span class="token punctuation">]</span></code></pre>
 <ul>
 <li>指定sess为默认会话</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python">sess <span class="token operator">=</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<pre class=" language-python"><code class="language-python">sess <span class="token operator">=</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">with</span> sess<span class="token punctuation">.</span><span class="token keyword">as</span> default<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-  <span class="token operator">&lt;</span><span class="token keyword">with</span><span class="token operator">-</span>block<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+  <span class="token operator">&lt;</span><span class="token keyword">with</span><span class="token operator">-</span>block<span class="token operator">></span></code></pre>
 <blockquote>
 <p>在定义计算时tensorflow会自动生成一个默认的计算图，如果没有特殊指定，定义的运算会自动加入这个计算图中。通过手动指定，会话也可以成为默认的(tensorflow不会自动生成默认的会话)</p>
 </blockquote>

@@ -32,8 +32,7 @@ CUDA_VISIBLE_DEVICES=1 python {xxx}.py
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
     
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -466,12 +465,12 @@ CUDA_VISIBLE_DEVICES=1 python {xxx}.py
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h4 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h4><h4 id="1-安装好tensorflow的gpu版本及其对应CUDA"><a href="#1-安装好tensorflow的gpu版本及其对应CUDA" class="headerlink" title="1.安装好tensorflow的gpu版本及其对应CUDA"></a>1.安装好tensorflow的gpu版本及其对应CUDA</h4><h4 id="2-有GPU"><a href="#2-有GPU" class="headerlink" title="2.有GPU"></a>2.有GPU</h4><a id="more"></a>
-<h2 id="1-指定某一块或多块gpu运行"><a href="#1-指定某一块或多块gpu运行" class="headerlink" title="1.指定某一块或多块gpu运行"></a>1.指定某一块或多块gpu运行</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 指定第二块gpu</span>
-CUDA_VISIBLE_DEVICES<span class="token operator">=</span>1 python <span class="token punctuation">{</span>xxx<span class="token punctuation">}</span>.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">export</span> CUDA_VISIBLE_DEVICES<span class="token operator">=</span>1
-python <span class="token punctuation">{</span>xxx<span class="token punctuation">}</span>.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> os
-os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"CUDA_VISIBLE_DEVICES"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"2"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="1-指定某一块或多块gpu运行"><a href="#1-指定某一块或多块gpu运行" class="headerlink" title="1.指定某一块或多块gpu运行"></a>1.指定某一块或多块gpu运行</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 指定第二块gpu</span>
+CUDA_VISIBLE_DEVICES<span class="token operator">=</span>1 python <span class="token punctuation">{</span>xxx<span class="token punctuation">}</span>.py</code></pre>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">export</span> CUDA_VISIBLE_DEVICES<span class="token operator">=</span>1
+python <span class="token punctuation">{</span>xxx<span class="token punctuation">}</span>.py</code></pre>
+<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> os
+os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"CUDA_VISIBLE_DEVICES"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"2"</span></code></pre>
 <p>参数参考：</p>
 <table>
 <thead>
@@ -501,11 +500,11 @@ os<span class="token punctuation">.</span>environ<span class="token punctuation"
 <td align="left">No GPU will be visible</td>
 </tr>
 </tbody></table>
-<h2 id="2-配置gpu显存使用率"><a href="#2-配置gpu显存使用率" class="headerlink" title="2.配置gpu显存使用率"></a>2.配置gpu显存使用率</h2><h3 id="方法一：通过配置Session的运行参数配置gpu的使用"><a href="#方法一：通过配置Session的运行参数配置gpu的使用" class="headerlink" title="方法一：通过配置Session的运行参数配置gpu的使用"></a>方法一：通过配置Session的运行参数配置gpu的使用</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 通过配置Session的运行参数配置gpu的使用</span>
+<h2 id="2-配置gpu显存使用率"><a href="#2-配置gpu显存使用率" class="headerlink" title="2.配置gpu显存使用率"></a>2.配置gpu显存使用率</h2><h3 id="方法一：通过配置Session的运行参数配置gpu的使用"><a href="#方法一：通过配置Session的运行参数配置gpu的使用" class="headerlink" title="方法一：通过配置Session的运行参数配置gpu的使用"></a>方法一：通过配置Session的运行参数配置gpu的使用</h3><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 通过配置Session的运行参数配置gpu的使用</span>
 
 config <span class="token operator">=</span> tf<span class="token punctuation">.</span>ConfigProto<span class="token punctuation">(</span>allow_soft_placement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> allow_soft_placement<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
 config<span class="token punctuation">.</span>gpu_options<span class="token punctuation">.</span>per_process_gpu_memory_fraction <span class="token operator">=</span> <span class="token number">0.4</span>  <span class="token comment" spellcheck="true">#占用40%显存</span>
-sess <span class="token operator">=</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span>config<span class="token operator">=</span>config）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+sess <span class="token operator">=</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span>config<span class="token operator">=</span>config）</code></pre>
 <p>参数参考：</p>
 <table>
 <thead>
