@@ -1411,7 +1411,7 @@ table tr:nth-child(2n), thead {
 }
 
 .post-statis .statis .count a {
-    color: #42b983;
+    color: #777;
 }
 
 .post-statis .statis .name {
@@ -1432,8 +1432,8 @@ table tr:nth-child(2n), thead {
     margin: 0 0.5rem;
     padding: 0;
     color: #fff;
-    border: 1px solid #0f9d58;
-    background: radial-gradient(#4cbf30, #0f9d58);;
+    border: 1px solid #222629;
+    background: radial-gradient(#6b6e70, #474b4f);;
     font-size: 0.9rem;
     border-radius: 50%;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .21), 0 2px 3px rgba(0, 0, 0, .1);
@@ -1705,7 +1705,7 @@ footer .copy-right {
 }
 
 .top-scroll .btn-floating {
-    background: linear-gradient(to bottom right, #86c232 0%, #61892f 100%);
+    background: linear-gradient(to bottom right, #4b4e70 0%, #474b4f 100%);
     width: 48px;
     height: 48px;
 }
