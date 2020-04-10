@@ -10,19 +10,15 @@
 <ul>
 <li>placeholder 机制的作用</li>
 </ul>
-<blockquote>
 <p>网络的输入数据是一个矩阵，我们把多个这样的矩阵数据打包成一个很大的数据集，如果将这个数据集当作变量或常量一下子输入到网络中，那么就需要定义很多的网络输入常量，于是计算图上将会涌现大量的输入节点。这是不利的，这些节点的利用率很低。<br>
 placehoder 机制被设计用来解决这个问题。编程时只需要将数据通过 placeholder 传入 TensorFlow 计算图即可。</p>
-</blockquote>
 <ul>
 <li>使用 <code>tf.placeholder()</code></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">a = tf.placeholder(tf.float32,shape=(<span class="number">2</span>),name=<span class="string">"input"</span>) </span><br><span class="line">b = tf.placeholder(tf.float32,shape=(<span class="number">2</span>),name=<span class="string">"input"</span>)</span><br><span class="line">result = a+b</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess :</span><br><span class="line">  sess.run(result,feed_dict=&#123;a:[<span class="number">1.0</span>,<span class="number">2.0</span>],b:[<span class="number">3.0</span>,<span class="number">4.0</span>]&#125;)</span><br><span class="line">  print(result)</span><br><span class="line">  ＃输出[<span class="number">4.</span>,<span class="number">6.</span>]</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<blockquote>
 <p>在 placeholder 定义时，这个位置上的数据类型<code>dtype</code>是需要指定且不可以改变的。 placeholder 中数据的维度信息<code>shape</code>可以根据提供的数据推导得出，所以不一定要给出；或者对于不确定的维度，填入<code>None</code>即可。<br>
 这里输入<code>a</code>和<code>b</code>定义为常量，这里将它们定义为一个<code>tf.placeholder()</code>，在运行会话时需要通过<code>sess.run()</code>函数的<code>feed_dict</code>来提供<code>a</code>和<code>b</code>的取值。<code>feed_dict</code>是一个字典<code>dict</code>，在字典中需要给出每个用到的<code>placeholder</code>的取值。</p>
-</blockquote>
 <h2 id="2-Varibale变量">2.Varibale变量</h2>
 <ul>
 <li><code>tf.Variable()</code>创建变量</li>
@@ -72,13 +68,11 @@ placehoder 机制被设计用来解决这个问题。编程时只需要将数据
 <li>管理变量的变量空间</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"one"</span>) :</span><br><span class="line">a = tf.get_variable (<span class="string">"a"</span>,shape=[<span class="number">1</span>],initializer=tf.constant_initializer(<span class="number">1.0</span>))</span><br></pre></td></tr></table></figure>
-<blockquote>
 <ul>
 <li>以上代码在名为<code>one</code>的变量空间内创建名字为<code>a</code>的变量;</li>
 <li>因为<code>tf.variable_scope(&quot;one&quot;)</code>的参数默认<code>reuse=False</code>,所以在<code>one</code>这个变量空间内不能在创建名字为<code>a</code>的变量；</li>
 <li>若<code>reuse=True</code>则<code>get_variable()</code>函数会直接获取<code>name</code>属性相同的己经创建的变量,获取的变量没创建过则会报错（区别于指定initializer时为创建新变量）</li>
 </ul>
-</blockquote>
 </div><div class="tags"><a href="/tags/深度学习/"><i class="fa fa-tag"></i>深度学习</a></div><div class="post-nav"><a class="next" href="/2019/10/06/tensorflow-ru-men-bi-ji-2-ji-suan-tu-zhang-liang-hui-hua-session/">tensorflow入门笔记2:计算图、张量、会话session</a></div><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
   clientID: 'ca33f6776395ff5de8ff',
   clientSecret: '2d3060559ef533fbfd0bfbee888c983ac1e32957',

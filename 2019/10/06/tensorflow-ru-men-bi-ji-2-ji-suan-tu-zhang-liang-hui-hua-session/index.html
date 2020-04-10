@@ -25,18 +25,13 @@
 <li>张量只是引用了程序中的运算结果而不是一个真正的数组，张量保存的是运算结果的属性，而不是真正的数字</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </span><br><span class="line">a=tf.constant([<span class="number">1.0</span>,<span class="number">2.0</span>],name =<span class="string">"a"</span>) </span><br><span class="line">b=tf.constant([<span class="number">3.0</span>,<span class="number">4.0</span>],name =<span class="string">"b"</span>) </span><br><span class="line">result=a+b </span><br><span class="line">print(result) </span><br><span class="line">＃输出 Tensor (<span class="string">"add:0"</span>，shape=(<span class="number">2</span>,), dtype=float32)</span><br></pre></td></tr></table></figure>
-<blockquote>
 <p><code>add:0 </code>:由加法得来的第一个输出<br>
 <code>shape=(2,)</code>:形状为2的数组，只有一个维度，注意不是2*1，<br>
 <code>dtype=float32</code>:元素类型为<code>float32</code></p>
-<blockquote>
 <p>要想获得<code>result</code>的真值需定义会话<code>sess</code>进行真正的运算<br>
 使用<code>sess.run(result)</code><br>
 或<code>result.eval(session=sess)</code><br>
 或<code>sess</code>为默认会话时<code>result.eval()</code></p>
-</blockquote>
-<blockquote></blockquote>
-</blockquote>
 <h2 id="3-会话-Session">3.会话(Session)</h2>
 <ul>
 <li>定义会话</li>
@@ -46,9 +41,7 @@
 <li>指定sess为默认会话</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sess = tf.Session()</span><br><span class="line"><span class="keyword">with</span> sess.<span class="keyword">as</span> default():</span><br><span class="line">  &lt;<span class="keyword">with</span>-block&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
 <p>在定义计算时tensorflow会自动生成一个默认的计算图，如果没有特殊指定，定义的运算会自动加入这个计算图中。通过手动指定，会话也可以成为默认的(tensorflow不会自动生成默认的会话)</p>
-</blockquote>
 </div><div class="tags"><a href="/tags/深度学习/"><i class="fa fa-tag"></i>深度学习</a></div><div class="post-nav"><a class="pre" href="/2019/10/06/tensorflow-ru-men-bi-ji-3-placeholder-ji-zhi-he-variable-bian-liang/">tensorflow入门笔记3:placeholder机制和Variable变量</a><a class="next" href="/2019/09/16/ubuntu-chang-yong-ming-ling/">ubuntu常用命令</a></div><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
   clientID: 'ca33f6776395ff5de8ff',
   clientSecret: '2d3060559ef533fbfd0bfbee888c983ac1e32957',

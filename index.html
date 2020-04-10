@@ -10,10 +10,8 @@
 <ul>
 <li>placeholder 机制的作用</li>
 </ul>
-<blockquote>
 <p>网络的输入数据是一个矩阵，我们把多个这样的矩阵数据打包成一个很大的数据集，如果将这个数据集当作变量或常量一下子输入到网络中，那么就需要定义很多的网络输入常量，于是计算图上将会涌现大量的输入节点。这是不利的，这些节点的利用率很低。<br>
 placehoder 机制被设计用来解决这个问题。编程时只需要将数据通过 placeholder 传入 TensorFlow 计算图即可。</p>
-</blockquote>
 <ul>
 <li>使用 <code>tf.placeholder()</code></li>
 </ul>
