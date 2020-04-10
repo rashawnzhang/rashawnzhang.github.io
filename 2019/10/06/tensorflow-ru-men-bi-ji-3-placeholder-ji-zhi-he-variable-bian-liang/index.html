@@ -1,174 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <meta name="keywords" content="hexo, autumn">
-    <title>
-        张宇轩
-    </title>
-    <!-- favicon -->
-    
-    <link rel="icon" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/favicon.ico">
-     <link rel="stylesheet" href="/css/style.css">
-
-    <!-- highlight -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css">
-    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad()
-    </script>
-    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
-
-    <script>
-        infiniteScroll()
-
-        window.addEventListener('DOMContentLoaded', function () {
-            const [
-                mainTitle,
-                mobileMenu,
-                mobileMainTitle,
-                mobileMenuBtn,
-                ipadMenuBtn,
-                aside,
-                closeBtn,
-            ] = getEle(
-                '#main-title',
-                '.mobile-menu',
-                '.mobile-menu h3',
-                '.mobile-menu button',
-                '.ipad-menu',
-                'aside',
-                'aside .close',
-            )
-            const io = new IntersectionObserver(entries => {
-                if (entries[0].intersectionRatio <= 0) {
-                    mobileMainTitle.classList.remove('invisibile')
-                } else {
-                    mobileMainTitle.classList.add('invisibile')
-                }
-            })
-            io.observe(mainTitle)
-
-            clickToggleAside(mobileMenuBtn)
-            clickToggleAside(ipadMenuBtn)
-            clickToggleAside(closeBtn, false)
-
-            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
-            if (isMenuVisible) document.body.style.background = 'none'
-
-            function getEle(...args) {
-                return args.map(arg => document.querySelector(arg))
-            }
-
-            function clickToggleAside(btn, show = true) {
-                btn.addEventListener('click', function () {
-                    if (show) {
-                        aside.style.display = 'block'
-                    } else {
-                        aside.style.display = 'none'
-                    }
-                })
-            }
-        })
-    </script>
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
-
-<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
-    <div class="container">
-        <header class="header">
-    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
-        <h3 class="invisibile">
-            <a href="/" class="logo">
-                张宇轩
-            </a>
-        </h3>
-        <button class="menu">menu</button>
-    </nav>
-
-    <button class="ipad-menu menu">menu</button>
-
-    <h1 class="title" id="main-title">
-        <a href="/" class="logo">
-            张宇轩
-        </a>
-    </h1>
-    <h2 class="desc">
-        努力学习
-    </h2>
-
-    <div class="links">
-        <ul>
-            
-            <li>
-                <a href="https://github.com/FrontendSophie">
-                    Github
-                </a>
-            </li>
-            
-            <li>
-                <a href="https://www.linkedin.com/in/frontendsophie/">
-                    LinkedIn
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-</header>
-        <main class="main">
-            <article class="post">
-    
-    
-    <h4 class="post-cat">
-        <a href="/categories/tensorflow/">
-            tensorflow
-        </a>
-    </h4>
-    
-    
-    <h2 class="post-title">
-        tensorflow入门笔记3:placeholder机制和Variable变量
-    </h2>
-    <ul class="post-date">
-        <li>
-            2019-10-06
-        </li>
-        <li>
-            张宇轩
-        </li>
-    </ul>
-    <div class="post-content">
-        <h2 id="1-placeholder-机制"><a href="#1-placeholder-机制" class="headerlink" title="1.placeholder 机制"></a>1.placeholder 机制</h2><ul>
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="张宇轩的个人博客"><title>tensorflow入门笔记3:placeholder机制和Variable变量 | Rashawn</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.1/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.1/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + 'dada2cad97b960a73424d991bdfabe56';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/2.0.4/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/2.1.4/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/2.1.4/toastr.min.css"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">tensorflow入门笔记3:placeholder机制和Variable变量</h1><a id="logo" href="/.">Rashawn</a><p class="description">基于hexo和github的个人博客</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">tensorflow入门笔记3:placeholder机制和Variable变量</h1><div class="post-meta">2019-10-06<span> | </span><span class="category"><a href="/categories/tensorflow/">tensorflow</a></span></div><div class="post-content"><h2 id="1-placeholder-机制">1.placeholder 机制</h2>
+<ul>
 <li>placeholder 机制的作用</li>
 </ul>
 <blockquote>
-<p>网络的输入数据是一个矩阵，我们把多个这样的矩阵数据打包成一个很大的数据集，如果将这个数据集当作变量或常量一下子输入到网络中，那么就需要定义很多的网络输入常量，于是计算图上将会涌现大量的输入节点。这是不利的，这些节点的利用率很低。<br>placehoder 机制被设计用来解决这个问题。编程时只需要将数据通过 placeholder 传入 TensorFlow 计算图即可。</p>
+<p>网络的输入数据是一个矩阵，我们把多个这样的矩阵数据打包成一个很大的数据集，如果将这个数据集当作变量或常量一下子输入到网络中，那么就需要定义很多的网络输入常量，于是计算图上将会涌现大量的输入节点。这是不利的，这些节点的利用率很低。<br>
+placehoder 机制被设计用来解决这个问题。编程时只需要将数据通过 placeholder 传入 TensorFlow 计算图即可。</p>
 </blockquote>
 <ul>
 <li>使用 <code>tf.placeholder()</code></li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
-a <span class="token operator">=</span> tf<span class="token punctuation">.</span>placeholder<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>float32<span class="token punctuation">,</span>shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">"input"</span><span class="token punctuation">)</span> 
-b <span class="token operator">=</span> tf<span class="token punctuation">.</span>placeholder<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>float32<span class="token punctuation">,</span>shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>name<span class="token operator">=</span><span class="token string">"input"</span><span class="token punctuation">)</span>
-result <span class="token operator">=</span> a<span class="token operator">+</span>b
-
-<span class="token keyword">with</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> sess <span class="token punctuation">:</span>
-  sess<span class="token punctuation">.</span>run<span class="token punctuation">(</span>result<span class="token punctuation">,</span>feed_dict<span class="token operator">=</span><span class="token punctuation">{</span>a<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">1.0</span><span class="token punctuation">,</span><span class="token number">2.0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>b<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token number">3.0</span><span class="token punctuation">,</span><span class="token number">4.0</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
-  ＃输出<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">a = tf.placeholder(tf.float32,shape=(<span class="number">2</span>),name=<span class="string">"input"</span>) </span><br><span class="line">b = tf.placeholder(tf.float32,shape=(<span class="number">2</span>),name=<span class="string">"input"</span>)</span><br><span class="line">result = a+b</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess :</span><br><span class="line">  sess.run(result,feed_dict=&#123;a:[<span class="number">1.0</span>,<span class="number">2.0</span>],b:[<span class="number">3.0</span>,<span class="number">4.0</span>]&#125;)</span><br><span class="line">  print(result)</span><br><span class="line">  ＃输出[<span class="number">4.</span>,<span class="number">6.</span>]</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <blockquote>
-<p>在 placeholder 定义时，这个位置上的数据类型<code>dtype</code>是需要指定且不可以改变的。 placeholder 中数据的维度信息<code>shape</code>可以根据提供的数据推导得出，所以不一定要给出；或者对于不确定的维度，填入<code>None</code>即可。<br>这里输入<code>a</code>和<code>b</code>定义为常量，这里将它们定义为一个<code>tf.placeholder()</code>，在运行会话时需要通过<code>sess.run()</code>函数的<code>feed_dict</code>来提供<code>a</code>和<code>b</code>的取值。<code>feed_dict</code>是一个字典<code>dict</code>，在字典中需要给出每个用到的<code>placeholder</code>的取值。</p>
+<p>在 placeholder 定义时，这个位置上的数据类型<code>dtype</code>是需要指定且不可以改变的。 placeholder 中数据的维度信息<code>shape</code>可以根据提供的数据推导得出，所以不一定要给出；或者对于不确定的维度，填入<code>None</code>即可。<br>
+这里输入<code>a</code>和<code>b</code>定义为常量，这里将它们定义为一个<code>tf.placeholder()</code>，在运行会话时需要通过<code>sess.run()</code>函数的<code>feed_dict</code>来提供<code>a</code>和<code>b</code>的取值。<code>feed_dict</code>是一个字典<code>dict</code>，在字典中需要给出每个用到的<code>placeholder</code>的取值。</p>
 </blockquote>
-<h2 id="2-Varibale变量"><a href="#2-Varibale变量" class="headerlink" title="2.Varibale变量"></a>2.Varibale变量</h2><ul>
-<li><code>tf.Variable()</code>创建变量<pre class="line-numbers language-python"><code class="language-python">tf<span class="token punctuation">.</span>Variable<span class="token punctuation">(</span>initial_value<span class="token punctuation">,</span>
-           trainable<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> 
-           collections<span class="token operator">=</span>None<span class="token punctuation">,</span> 
-           validate_shape<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> 
-           name<span class="token operator">=</span>None<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
+<h2 id="2-Varibale变量">2.Varibale变量</h2>
+<ul>
+<li><code>tf.Variable()</code>创建变量</li>
 </ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tf.Variable(initial_value,</span><br><span class="line">             trainable=<span class="literal">True</span>, </span><br><span class="line">             collections=<span class="literal">None</span>, </span><br><span class="line">             validate_shape=<span class="literal">True</span>, </span><br><span class="line">             name=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
@@ -177,7 +36,8 @@ result <span class="token operator">=</span> a<span class="token operator">+</sp
 <th>含义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>initial_value</td>
 <td>所有可以转换为Tensor的类型</td>
 <td>变量的初始值,一般是随机生成函数的值</td>
@@ -202,18 +62,16 @@ result <span class="token operator">=</span> a<span class="token operator">+</sp
 <td>string</td>
 <td>变量的名称，如果没有指定则系统会自动分配一个唯一的值</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <ul>
 <li>在<code>sess</code>对变量运算前初始化所有变量</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python">init <span class="token operator">=</span> tf<span class="token punctuation">.</span>global_variables_initializer<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">with</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> sess<span class="token punctuation">:</span>
-  sess<span class="token punctuation">.</span>run<span class="token punctuation">(</span>init<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">  sess.run(init)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>管理变量的变量空间</li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">with</span> tf<span class="token punctuation">.</span>variable_scope<span class="token punctuation">(</span><span class="token string">"one"</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
-a <span class="token operator">=</span> tf<span class="token punctuation">.</span>get_variable <span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span>shape<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>initializer<span class="token operator">=</span>tf<span class="token punctuation">.</span>constant_initializer<span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"one"</span>) :</span><br><span class="line">a = tf.get_variable (<span class="string">"a"</span>,shape=[<span class="number">1</span>],initializer=tf.constant_initializer(<span class="number">1.0</span>))</span><br></pre></td></tr></table></figure>
 <blockquote>
 <ul>
 <li>以上代码在名为<code>one</code>的变量空间内创建名字为<code>a</code>的变量;</li>
@@ -221,36 +79,14 @@ a <span class="token operator">=</span> tf<span class="token punctuation">.</spa
 <li>若<code>reuse=True</code>则<code>get_variable()</code>函数会直接获取<code>name</code>属性相同的己经创建的变量,获取的变量没创建过则会报错（区别于指定initializer时为创建新变量）</li>
 </ul>
 </blockquote>
-
-    </div>
-</article>
-        </main>
-        <aside class="aside">
-            <div class="close"></div>
-            <section class="aside-section">
-                
-    <h1>Categories</h1>
-
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/tensorflow/">tensorflow</a></li></ul>
-
-            </section>
-            <section class="aside-section">
-                
-    <h1>Archives</h1>
-
-    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a></li></ul>
-
-
-            </section>
-            <section class="aside-section tag">
-                
-    <h1>Tags</h1>
-
-    <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
-
-            </section>
-        </aside>
-    </div>
-</body>
-
-</html>
+</div><div class="tags"><a href="/tags/深度学习/"><i class="fa fa-tag"></i>深度学习</a></div><div class="post-nav"><a class="next" href="/2019/10/06/tensorflow-ru-men-bi-ji-2-ji-suan-tu-zhang-liang-hui-hua-session/">tensorflow入门笔记2:计算图、张量、会话session</a></div><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'ca33f6776395ff5de8ff',
+  clientSecret: '2d3060559ef533fbfd0bfbee888c983ac1e32957',
+  repo: 'gitalk',
+  owner: 'rashawnzhang',
+  admin: ['rashawnzhang'],
+  id: md5(location.pathname),
+  distractionFreeMode: false
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://zhangyuxuan.website"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tensorflow/">tensorflow</a><span class="category-list-count">3</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/深度学习/" style="font-size: 15px;">深度学习</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/tensorflow-ru-men-bi-ji-3-placeholder-ji-zhi-he-variable-bian-liang/">tensorflow入门笔记3:placeholder机制和Variable变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/tensorflow-ru-men-bi-ji-2-ji-suan-tu-zhang-liang-hui-hua-session/">tensorflow入门笔记2:计算图、张量、会话session</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/16/ubuntu-chang-yong-ming-ling/">ubuntu常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/16/tensorflow-ru-men-bi-ji-1-zhi-ding-gpu-ji-fen-pei-xian-cun/">tensorflow入门笔记1:指定GPU及分配显存</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">Rashawn.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
