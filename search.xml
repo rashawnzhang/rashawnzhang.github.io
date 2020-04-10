@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2020/04/10/menu/"/>
+      <url>/2020/04/10/menu/</url>
+      
+        <content type="html"><![CDATA[<h1 id="H1-is-separator"><a href="#H1-is-separator" class="headerlink" title="H1 is separator"></a>H1 is separator</h1><h2 id="H2"><a href="#H2" class="headerlink" title="H2"></a>H2</h2><ul><li>find nearest header</li><li>tensorflow入门笔记3:placeholder机制和Variable变量.md</li></ul><h3 id="H3"><a href="#H3" class="headerlink" title="H3"></a>H3</h3><ul><li>find nearest header</li><li>this unordered list will find H3</li></ul><h1 id="H1-is-separator-1"><a href="#H1-is-separator-1" class="headerlink" title="H1 is separator"></a>H1 is separator</h1><h4 id="H4"><a href="#H4" class="headerlink" title="H4"></a>H4</h4><ul><li>find nearest header</li><li>this unordered list will find H4</li></ul><h5 id="H5"><a href="#H5" class="headerlink" title="H5"></a>H5</h5><ul><li>find nearest header</li><li>this unordered list will find H5</li></ul><h6 id="H6"><a href="#H6" class="headerlink" title="H6"></a>H6</h6><ul><li>find nearest header</li><li>this unordered list will find H6</li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>tensorflow入门笔记3:placeholder机制和Variable变量</title>
       <link href="/2019/10/06/tensorflow-ru-men-bi-ji-3-placeholder-ji-zhi-he-variable-bian-liang/"/>
       <url>/2019/10/06/tensorflow-ru-men-bi-ji-3-placeholder-ji-zhi-he-variable-bian-liang/</url>
