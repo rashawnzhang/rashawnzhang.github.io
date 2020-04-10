@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="张宇轩的个人博客"><title>自注意力机制 | Rashawn</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.1/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.1/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.1/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + 'dada2cad97b960a73424d991bdfabe56';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/2.0.4/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/2.1.4/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/2.1.4/toastr.min.css"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">自注意力机制</h1><a id="logo" href="/.">Rashawn</a><p class="description">基于hexo和github的个人博客</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">自注意力机制</h1><div class="post-meta">2020-04-10<span> | </span><span class="category"><a href="/categories/NLP/">NLP</a></span></div><div class="post-content"><p>以下参考：<a href="https://www.jianshu.com/p/d2ae158fc9e5" target="_blank" rel="noopener">https://www.jianshu.com/p/d2ae158fc9e5</a></p>
+<p>**attention：**输入和输出进行比较，不同的输出对不同输入的关注不同。假设输出$y_1$更关注输入$x_1$，$y_2$更关注$x_2$，那么在句子翻译中，语言$x_1x_2 \cdots x_n$翻译成$y_1y_2 \cdots y_n$，那么很可能认为单词$x_1$翻译成$y_1$，$x_2$翻译成$y_2$。能够使模型捕捉有用信息。</p>
+<p>**self-attention：**输入和输入自己进行比较（计算相似度），将输入的与上下文无关的词向量更新成上下文有关的词向量。解决了RNN等的短时记忆问题（即某个输入的词向量只与前几个输入有关）。</p>
+<a id="more"></a>
+<h2 id="self-attention-计算过程">self-attention 计算过程</h2>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-c679a5c9e81e9e0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/h/240" alt="self-attention计算过程1：嵌入词向量，再由词向量依次线性变换出queries keys values"></p>
+<p>Thinking 和 Machines是同一组输入（同一句话）中的某两个输入（某两个单词），$x$是上下文无关的词向量</p>
+<p>####1.  根据原词向量依次计算queries，Keys，Values</p>
+<p>$$Queries = X*W^Q$$</p>
+<p>$$Keys = Queries*W^K$$</p>
+<p>$$Values = Keys*W^V$$</p>
+<p>其中，$W^Q，W^K，W^V$是待训练的参数</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-8f31443c573844bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/h/340" alt="self-attention计算过程2"></p>
+<p>####2.  计算scores</p>
+<p>$$<br>
+scores=\frac{q_i* keys}{\sqrt{d_{k}}}<br>
+$$<br>
+每个$q_i$都算出n个score，即(1,n)的scores向量<br>
+其中，$d_k$是超参数（这里取64），为了让后面的计算中具有稳定的梯度</p>
+<p>####3.  计算（能句子中的长依赖关系）的新向量</p>
+<p>$$<br>
+z_i=softmax（scores）*v<br>
+$$</p>
+<p>对于某个词向量，$softmax（scores）$即为所有词向量对该词向量的权重，将这些权重分别乘以各向量得到新向量。运算为$(1，n)*(n,1)$</p>
+<p>那么最后能生成输入句子中单词与单词直接的权重矩阵，即注意力矩阵<br>
+<img src="https://upload-images.jianshu.io/upload_images/18879971-8009c95c8f726cd9.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/200" alt="注意力矩阵"></p>
+<h2 id="self-attention的优点">self-attention的优点</h2>
+<ol>
+<li>传统的RNN，LSTM网络，需要按顺序进行序列计算，所以距离越远，关系越难捕捉。如果面对长句子，这种距离较远的依赖关系相比之下很难捕获到。而self-attention是针对句子中所有词两两计算，不存在距离长短的问题</li>
+<li>相比循环网络，self-attention能并行计算</li>
+</ol>
+<p>以下参考：<a href="https://mp.weixin.qq.com/s/RLxWevVWHXgX-UcoxDS70w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/RLxWevVWHXgX-UcoxDS70w</a></p>
+<h2 id="transformer总体框架">transformer总体框架</h2>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-6367eb5c9bba5055.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/80" alt="输入经过transoformer得到输出"></p>
+<p>transfromer内部结构总体框架</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-e93682a7195fe536.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/360" alt="transformer模型框架"></p>
+<p>上述框架可抽象成Encoders和Decoders</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-5fd669cd0989d166.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/240" alt="transformer也是一个Encoder-Decoder模型"></p>
+<p>Encoders包含6个Encoder，Decoders包含6个Decoder<br>
+最后一个Encoder与6个Decoder建立连接，连接的意思是某种运算，例如RNN是使用中间语义$c$作为中间连接</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-4881c62c0c112c00.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/240/" alt></p>
+<p>以最后的那个Encoder和其中一个Decoder的连接为例，继续探究Encoder和Decoder的内部<br>
+Encoder和Decoder都有Self-Attention和Feed Forward层，Decoder还有一个 Encoder-Decoder Attention层，注意，Decoder中的注意力层其实是masked self-attention</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-676c87728e39a0e1.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/140" alt="Encoder和Decoder的内部结构"></p>
+<h2 id="以下探究transformer模型的每个层">以下探究transformer模型的每个层</h2>
+<h2 id="1-transformer的Self-Attention层：Scaled-Dot-Product-Attention">1.transformer的Self-Attention层：Scaled Dot-Product Attention</h2>
+<p>同样，计算Self-Attention需要三个参数Q，K，V去计算注意力机制矩阵，这里重新定义了计算方式，如下</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-964dcad7f87ddc35.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/240" alt="根据Q，K，V计算注意力机制矩阵"></p>
+<p>self-attention得到的注意力矩阵同上<br>
+masked self-attention得到的注意力矩阵与上面有点不同，这里的masked就是要在做翻译的时候，不给模型看到未来的信息。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-08d4a0c9cec1c28c.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/240" alt="masked注意力矩阵"></p>
+<h2 id="3-Multi-Head-Attention">3. Multi-Head Attention</h2>
+<p>Multi-Head Attention就是把Scaled Dot-Product Attention的过程做h次，然后把输出$z$合起来。它的结构图如下</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-8de30254aa2155b7.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/340" alt="h次Scaled Dot-Product Attention"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-04691dc7c88193a5.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/240" alt="重复率8次，生成8个z"></p>
+<p>输出$z$合起来后乘以一个参数$w^o$矩阵联合训练</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-909bf4759ba3d0c6.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/240" alt="8个z合起来"></p>
+<h2 id="4-Position-Embedding">4. Position Embedding</h2>
+<p>因为注意力模型不像RNN那样无视了各输入之间的距离，因此是无法捕捉到序列顺序信息的，例如将K、V按行进行打乱，Attention之后的结果是一样的。为了保留序列信息，需要在embeddings得到的词向量上在加上一个包含序列信息的向量，即Position Embedding得到的向量。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18879971-ad765d2d2bdbaad5.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/h/240" alt="Position Embedding"></p>
+<p>Position Embedding计算方法：</p>
+<p>Position Embedding的第偶数个元素<br>
+$$<br>
+P E_{(\text {pos}, 2 i)}=\sin \left(\text {pos} / 10000^{2 i / d_{\text {model}}}\right)<br>
+$$</p>
+<p>Position Embedding的第奇数个元素<br>
+$$<br>
+P E_{(\text {pos}, 2 i+1)}=\cos \left(\text {pos} / 10000^{2 i / d_{\text {model}}}\right)<br>
+$$</p>
+<h2 id="5-Position-wise-Feed-forward-Networks">5. Position-wise Feed-forward Networks</h2>
+<p>Relu激活函数和两次线性变换<br>
+$$<br>
+F F N(x)=\max \left(0, x W_{1}+b_{1}\right) W_{2}+b_{2}<br>
+$$</p>
+<h2 id="最后，总体框架采用残差连接方式对各层进行连接，参考ResNet">最后，总体框架采用残差连接方式对各层进行连接，参考ResNet</h2>
+</div><div class="tags"><a href="/tags/NLP/"><i class="fa fa-tag"></i>NLP</a></div><div class="post-nav"><a class="next" href="/2020/04/10/nlp-mo-xing-attetion-zhu-yi-li-ji-zhi/">NLP模型:Attetion注意力机制</a></div><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'ca33f6776395ff5de8ff',
+  clientSecret: '2d3060559ef533fbfd0bfbee888c983ac1e32957',
+  repo: 'gitalk',
+  owner: 'rashawnzhang',
+  admin: ['rashawnzhang'],
+  id: md5(location.pathname),
+  distractionFreeMode: false
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://zhangyuxuan.website"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tensorflow/">tensorflow</a><span class="category-list-count">4</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/深度学习/" style="font-size: 15px;">深度学习</a> <a href="/tags/pytorch/" style="font-size: 15px;">pytorch</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/04/10/zi-zhu-yi-li-ji-zhi/">自注意力机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/10/nlp-mo-xing-attetion-zhu-yi-li-ji-zhi/">NLP模型:Attetion注意力机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/10/nlp-zhong-wen-fen-ci-er-tong-ji-fen-ci/">NLP中文分词:二、统计分词</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/10/nlp-zhong-wen-fen-ci-yi-gui-ze-fen-ci-zhi-zui-da-pi-pei-fa/">NLP中文分词:一、规则分词之最大匹配法</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/10/pytorch-xun-lian-bao-cun-jian-yan-mo-xing-ji-ben-liu-cheng/">pytorch训练保存检验模型基本流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/10/vnc-fang-wen-mate-huo-gnome-zhuo-mian-de-fu-wu-duan-pei-zhi/">VNC访问mate或gnome桌面的服务端配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/10/tensorflow-xun-lian-bao-cun-jian-yan-mo-xing-ji-ben-liu-cheng/">tensorflow训练保存检验模型基本流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/tensorflow-ru-men-bi-ji-3-placeholder-ji-zhi-he-variable-bian-liang/">tensorflow入门笔记3:placeholder机制和Variable变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/tensorflow-ru-men-bi-ji-2-ji-suan-tu-zhang-liang-hui-hua-session/">tensorflow入门笔记2:计算图、张量、会话session</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/16/ubuntu-chang-yong-ming-ling/">ubuntu常用命令</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">Rashawn.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
